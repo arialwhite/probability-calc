@@ -1,0 +1,42 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Distribution de la loi binomial
+    </div>
+  <p class="badge">
+    Distributions d'essais indépendants pour une même probabilité de succès
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>N</td>
+        <td><input class="form-control" placeholder="Nombre d'expériences" [(ngModel)]="N" required></td>
+      </tr>
+      <tr>
+        <td>P</td>
+        <td><input class="form-control" placeholder="Probabilité de succès"  [(ngModel)]="P" required></td>
+      </tr>
+    </table>
+    
+    <input type="button" value="Calculer" (click)="compute()" class="btn btn-primary pull-right" />
+    <br />
+    <hr />
+    <br />
+    Avec {{N === undefined ? 'N' : N}} essais de probabilité de succès de {{P === undefined ? 'P' : P}}:
+    <br />
+    <chart *ngIf="options" [options]="options"></chart>
+    <table class="result-table" *ngIf="options">
+      <tr>
+        <td>Espérance : </td>
+        <td> {{E | number : '1.0-4'}}</td>
+      </tr>
+      <tr>
+        <td>Variance : </td>
+        <td> {{V | number : '1.0-4'}}</td>
+      </tr>
+      <tr>
+        <td>Écart-type : </td>
+        <td> {{STD_DEV | number : '1.0-4'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Calcul de la loi binomial
+    </div>
+  <p class="badge">
+    nombre de succès obtenus lors de la répétition indépendante de plusieurs expériences aléatoires identiques
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>N</td>
+        <td><input class="form-control" placeholder="Nombre d'expériences" [(ngModel)]="N" required></td>
+      </tr>
+      <tr>
+        <td>P</td>
+        <td><input class="form-control" placeholder="Probabilité de succès"  [(ngModel)]="P" required></td>
+      </tr>
+      <tr>
+        <td>K</td>
+        <td><input class="form-control" placeholder="Nombre de succès"  [(ngModel)]="K" required></td>
+      </tr>
+    </table>
+    
+    <input type="button" value="Calculer" (click)="compute()" class="btn btn-primary pull-right" />
+    <br />
+    <hr />
+    <br />
+    Probalité de {{K === undefined ? 'K' : K}} succès pour {{N === undefined ? 'N' : N}} essais pour une probalité de succès de {{P === undefined ? 'P' : P}} : {{result === undefined ? 'X' : result}}
+  </div>
+</div>

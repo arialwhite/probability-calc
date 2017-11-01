@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Calcul du coefficient binomial
+    </div>
+  <p class="badge">
+    nombre de combinaison possible
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>K</td>
+        <td><input class="form-control" placeholder="Nombre de d'éléments"  [(ngModel)]="K" required></td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td><input class="form-control" placeholder="Nombre de possibilités" [(ngModel)]="N" required></td>
+      </tr>
+    </table>
+    
+    <input type="button" value="Calculer" (click)="compute()" class="btn btn-primary pull-right" />
+    <br />
+    <hr />
+    <br />
+    Choix de {{K === undefined ? 'K' : K}} éléments parmis {{N === undefined ? 'N' : N}} : {{result === undefined ? 'X' : result}} combinaisons possibles
+  </div>
+</div>
