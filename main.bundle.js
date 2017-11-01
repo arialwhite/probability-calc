@@ -182,7 +182,7 @@ var BinomialCoefComponent = (function () {
     function BinomialCoefComponent() {
     }
     BinomialCoefComponent.prototype.compute = function () {
-        this.result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["c" /* bicoeff */])(this.N, this.K);
+        this.result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["f" /* bicoeff */])(this.N, this.K);
     };
     return BinomialCoefComponent;
 }());
@@ -206,7 +206,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".panel {\n  width: 50%;\n  margin: 20px auto;\n}\n\n.badge {\n  margin: 20px 0 0 20px;\n}", ""]);
+exports.push([module.i, ".panel {\n  width: 50%;\n  margin: 20px auto;\n}\n\n.badge {\n  margin: 20px 0 0 20px;\n}\n\n.result-table td {\n  padding : 10px;\n}", ""]);
 
 // exports
 
@@ -219,7 +219,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/binomial-distrib/binomial-distrib.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    Distribution de la loi binomial\n    </div>\n  <p class=\"badge\">\n    Distributions d'essais indépendants pour une même probabilité de succès\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>N</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre d'expériences\" [(ngModel)]=\"N\" required></td>\n      </tr>\n      <tr>\n        <td>P</td>\n        <td><input class=\"form-control\" placeholder=\"Probabilité de succès\"  [(ngModel)]=\"P\" required></td>\n      </tr>\n    </table>\n    \n    <input type=\"button\" value=\"Calculer\" (click)=\"compute()\" class=\"btn btn-primary pull-right\" />\n    <br />\n    <hr />\n    <br />\n    Avec {{N === undefined ? 'N' : N}} essais de probabilité de succès de {{P === undefined ? 'P' : P}}:\n    <br />\n    <chart *ngIf=\"options\" [options]=\"options\"></chart>\n  </div>\n</div>"
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    Distribution de la loi binomial\n    </div>\n  <p class=\"badge\">\n    Distributions d'essais indépendants pour une même probabilité de succès\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>N</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre d'expériences\" [(ngModel)]=\"N\" required></td>\n      </tr>\n      <tr>\n        <td>P</td>\n        <td><input class=\"form-control\" placeholder=\"Probabilité de succès\"  [(ngModel)]=\"P\" required></td>\n      </tr>\n    </table>\n    \n    <input type=\"button\" value=\"Calculer\" (click)=\"compute()\" class=\"btn btn-primary pull-right\" />\n    <br />\n    <hr />\n    <br />\n    Avec {{N === undefined ? 'N' : N}} essais de probabilité de succès de {{P === undefined ? 'P' : P}}:\n    <br />\n    <chart *ngIf=\"options\" [options]=\"options\"></chart>\n    <table class=\"result-table\" *ngIf=\"options\">\n      <tr>\n        <td>Espérance : </td>\n        <td> {{E | number : '1.0-4'}}</td>\n      </tr>\n      <tr>\n        <td>Variance : </td>\n        <td> {{V | number : '1.0-4'}}</td>\n      </tr>\n      <tr>\n        <td>Écart-type : </td>\n        <td> {{STD_DEV | number : '1.0-4'}}</td>\n      </tr>\n    </table>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -246,6 +246,9 @@ var BinomialDistribComponent = (function () {
     }
     BinomialDistribComponent.prototype.compute = function () {
         this.result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["a" /* bilawDistrib */])(this.N, this.P);
+        this.E = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["b" /* expectedValue */])(this.N, this.P);
+        this.V = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["c" /* variance */])(this.N, this.P);
+        this.STD_DEV = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["d" /* stdDev */])(this.N, this.P);
         this.draw(this.result);
     };
     BinomialDistribComponent.prototype.draw = function (data) {
@@ -329,7 +332,7 @@ var BinomialLawComponent = (function () {
     function BinomialLawComponent() {
     }
     BinomialLawComponent.prototype.compute = function () {
-        this.result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["b" /* bilaw */])(this.N, this.P, this.K);
+        this.result = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__formulas__["e" /* bilaw */])(this.N, this.P, this.K);
     };
     return BinomialLawComponent;
 }());
@@ -351,9 +354,12 @@ BinomialLawComponent = __decorate([
 
 "use strict";
 /* unused harmony export fact */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return bicoeff; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return bilaw; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return bicoeff; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return bilaw; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return bilawDistrib; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return expectedValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return variance; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return stdDev; });
 
 function fact(n) {
     return n === 0 ? 1 : n * fact(n - 1);
@@ -372,6 +378,15 @@ function bilawDistrib(n, p) {
         result[i] = [i, bilaw(n, p, i)];
     }
     return result;
+}
+function expectedValue(n, p) {
+    return (n * p);
+}
+function variance(n, p) {
+    return (n * p) * (1 - p);
+}
+function stdDev(n, p) {
+    return Math.sqrt(variance(n, p));
 }
 //# sourceMappingURL=formulas.js.map
 
