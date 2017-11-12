@@ -1,0 +1,10 @@
+<table>
+  <tr *ngFor="let row of arr">
+    <td *ngFor="let cell of row">
+      {{ cell | number:'1.0-4'}}
+    </td>
+  </tr>
+</table>
+<div class="icon btn btn-default" (click)="saveAsCsv()">
+  <i class="fa fa-download"></i>
+</div>

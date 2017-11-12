@@ -1,0 +1,16 @@
+td {
+  padding: 1px;
+}
+
+.form-control {
+  width: 70px;
+  padding: 4px 10px;
+}
+
+/* hide spinner */
+input[type=number] {-moz-appearance: textfield;}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

@@ -1,0 +1,8 @@
+<app-matrix-loader (onload)="handleOnload($event)"></app-matrix-loader>
+<table *ngIf="matrix">
+  <tr *ngFor="let line of lines">
+    <td *ngFor="let col of cols">
+      <input class="form-control" [(ngModel)]="matrix[line -1][col - 1]" type="number" (ngModelChange)="onChange($event)" />
+    </td>
+  </tr>
+</table>

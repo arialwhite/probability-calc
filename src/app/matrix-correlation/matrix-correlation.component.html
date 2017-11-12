@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Calcul de la matrice de correlation
+    </div>
+  <p class="badge">
+    Évaluer la dépendance entre plusieurs variables
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>I</td>
+        <td><input class="form-control" placeholder="Nombre de lignes" [(ngModel)]="I" required></td>
+      </tr>
+      <tr>
+        <td>J</td>
+        <td><input class="form-control" placeholder="Nombre de colonnes" [(ngModel)]="J" required></td>
+      </tr>
+      <tr>
+        <td>Matrice</td>
+        <td>
+          <app-matrix-editor (onload)="onload($event)" [I]="I" [J]="J" [(ngModel)]="matrix"> </app-matrix-editor>
+        </td>
+      </tr>
+    </table>
+    
+    <input type="button" value="Calculer" (click)="compute()" class="btn btn-primary pull-right" />
+    <br />
+    <hr />
+    <app-matrix-view *ngIf="unbiased" [matrix]="unbiased"></app-matrix-view>
+  </div>
+</div>

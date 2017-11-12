@@ -1,0 +1,26 @@
+li.selected {
+  color: #fff
+}
+
+li.selected a {
+  color: #ccc
+}
+
+/*
+
+
+li a:before {
+   content:  "";
+   display: inline-block;
+   background: transparent;
+   width: 5px;
+   height: 1em;
+   vertical-align: middle;
+   margin-right: 5px;
+}
+
+li.selected a:before {
+   background: #555;
+}
+
+*/

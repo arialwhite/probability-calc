@@ -1,0 +1,28 @@
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.icon {
+  position: absolute;
+  display: block;
+  right: 0;
+  top: 0;
+}
+
+table {
+  margin: auto;
+  border-left: 1px solid #555;
+  border-right: 1px solid #555;
+  border-radius: 10px;
+  padding: 6px 8px;
+  border-collapse: separate;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+td {
+  padding: 6px;
+}
