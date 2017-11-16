@@ -166,7 +166,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nchart {\n  display: block;\n}", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nchart {\n  display: block;\n}\n\n.badge {\n  white-space: normal;\n}", ""]);
 
 // exports
 
@@ -623,17 +623,17 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 2:
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("../../../../../src/styles.css");
-__webpack_require__("../../../../../src/app/sidebar.css");
 __webpack_require__("../../../../bootstrap/dist/css/bootstrap.css");
 __webpack_require__("../../../../bootstrap/dist/css/bootstrap-theme.css");
-module.exports = __webpack_require__("../../../../font-awesome/css/font-awesome.css");
+__webpack_require__("../../../../font-awesome/css/font-awesome.css");
+__webpack_require__("../../../../../src/styles.css");
+module.exports = __webpack_require__("../../../../../src/app/sidebar.css");
 
 
 /***/ })
 
-},[2]);
+},[0]);
 //# sourceMappingURL=styles.bundle.js.map

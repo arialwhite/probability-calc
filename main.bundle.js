@@ -801,7 +801,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/matrix-stddev/matrix-stddev.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    Calcul de la déviation standard\n    </div>\n  <p class=\"badge\">\n    Evaluer la dispersion des mesures autour de la valeur moyenne\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>I</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" required></td>\n      </tr>\n      <tr>\n        <td>J</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de colonnes\" [(ngModel)]=\"J\" required></td>\n      </tr>\n      <tr>\n        <td>Matrice</td>\n        <td>\n          <app-matrix-editor (onload)=\"onload($event)\" [I]=\"I\" [J]=\"J\" [(ngModel)]=\"matrix\"> </app-matrix-editor>\n        </td>\n      </tr>\n    </table>\n    \n    <input type=\"button\" value=\"Calculer\" (click)=\"compute()\" class=\"btn btn-primary pull-right\" />\n    <br />\n    <hr />\n    <app-matrix-view *ngIf=\"result\" [matrix]=\"result\"></app-matrix-view>\n  </div>\n</div>"
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    Calcul de la déviation\n    </div>\n  <p class=\"badge\">\n    Evaluer la dispersion des mesures autour de la valeur moyenne\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>I</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" required></td>\n      </tr>\n      <tr>\n        <td>J</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de colonnes\" [(ngModel)]=\"J\" required></td>\n      </tr>\n      <tr>\n        <td>Matrice</td>\n        <td>\n          <app-matrix-editor (onload)=\"onload($event)\" [I]=\"I\" [J]=\"J\" [(ngModel)]=\"matrix\"> </app-matrix-editor>\n        </td>\n      </tr>\n    </table>\n    \n    <input type=\"button\" value=\"Calculer\" (click)=\"compute()\" class=\"btn btn-primary pull-right\" />\n    <br />\n    <hr />\n    <app-matrix-view *ngIf=\"result\" [matrix]=\"result\"></app-matrix-view>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1312,7 +1312,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dyna
 
 /***/ }),
 
-/***/ 0:
+/***/ 1:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("../../../../../src/main.ts");
@@ -1320,5 +1320,5 @@ module.exports = __webpack_require__("../../../../../src/main.ts");
 
 /***/ })
 
-},[0]);
+},[1]);
 //# sourceMappingURL=main.bundle.js.map
