@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <div id=\"wrapper\" class=\"toggled\">\n\n        <div id=\"sidebar-wrapper\">\n            <ul class=\"sidebar-nav\">\n                <li class=\"sidebar-brand\">\n                    <a href=\"#\">\n                        Navigation\n                    </a>\n                </li>\n                <li *ngFor=\"let m of menus\" \n                    [ngClass]=\"{'selected': selectedMenu === m}\"\n                    >\n                    <a href=\"#\" \n                       (click)=\"select(m)\"\n                       >{{m}}\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Loi binomial'\">\n            <div class=\"container-fluid\">\n              <app-binomial-coef></app-binomial-coef>\n              <app-binomial-law></app-binomial-law>\n              <app-binomial-distrib></app-binomial-distrib>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Covariance'\">\n            <div class=\"container-fluid\">\n              <app-matrix-stddev></app-matrix-stddev>\n              <app-matrix-covariance></app-matrix-covariance>\n              <app-matrix-correlation></app-matrix-correlation>\n            </div>\n        </div>\n\n    </div>\n"
+module.exports = "  <div id=\"wrapper\" class=\"toggled\">\n\n        <div id=\"sidebar-wrapper\">\n            <ul class=\"sidebar-nav\">\n                <li class=\"sidebar-brand\">\n                    <a href=\"#\">\n                        Navigation\n                    </a>\n                </li>\n                <li *ngFor=\"let m of menus\" \n                    [ngClass]=\"{'selected': selectedMenu === m}\"\n                    >\n                    <a href=\"#\" \n                       (click)=\"select(m)\"\n                       >{{m}}\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Loi binomial'\">\n            <div class=\"container-fluid\">\n              <app-binomial-coef></app-binomial-coef>\n              <app-binomial-law></app-binomial-law>\n              <app-binomial-distrib></app-binomial-distrib>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Covariance'\">\n            <div class=\"container-fluid\">\n              <app-matrix-stddev></app-matrix-stddev>\n              <app-matrix-covariance></app-matrix-covariance>\n              <app-matrix-correlation></app-matrix-correlation>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'VaR'\">\n            <div class=\"container-fluid\">\n              <app-var-hist></app-var-hist>\n            </div>\n        </div>\n\n    </div>\n"
 
 /***/ }),
 
@@ -53,7 +53,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.menus = ['Loi binomial', 'Covariance'];
+        this.menus = ['Loi binomial', 'Covariance', 'VaR'];
     }
     AppComponent.prototype.ngOnInit = function () {
         this.selectedMenu = sessionStorage.getItem('selection') || 'Loi binomial';
@@ -87,16 +87,20 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_highcharts_dist_HighchartsService___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_highcharts_dist_HighchartsService__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_highcharts__ = __webpack_require__("../../../../angular2-highcharts/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angular2_highcharts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angular2_highcharts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__binomial_coef_binomial_coef_component__ = __webpack_require__("../../../../../src/app/binomial-coef/binomial-coef.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__binomial_law_binomial_law_component__ = __webpack_require__("../../../../../src/app/binomial-law/binomial-law.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__binomial_distrib_binomial_distrib_component__ = __webpack_require__("../../../../../src/app/binomial-distrib/binomial-distrib.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__matrix_stddev_matrix_stddev_component__ = __webpack_require__("../../../../../src/app/matrix-stddev/matrix-stddev.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared_matrix_editor_matrix_editor_component__ = __webpack_require__("../../../../../src/app/shared/matrix-editor/matrix-editor.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__matrix_covariance_matrix_covariance_component__ = __webpack_require__("../../../../../src/app/matrix-covariance/matrix-covariance.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__shared_matrix_view_matrix_view_component__ = __webpack_require__("../../../../../src/app/shared/matrix-view/matrix-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_matrix_loader_matrix_loader_component__ = __webpack_require__("../../../../../src/app/shared/matrix-loader/matrix-loader.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__matrix_correlation_matrix_correlation_component__ = __webpack_require__("../../../../../src/app/matrix-correlation/matrix-correlation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__binomial_coef_binomial_coef_component__ = __webpack_require__("../../../../../src/app/binomial-coef/binomial-coef.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__binomial_law_binomial_law_component__ = __webpack_require__("../../../../../src/app/binomial-law/binomial-law.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__binomial_distrib_binomial_distrib_component__ = __webpack_require__("../../../../../src/app/binomial-distrib/binomial-distrib.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__matrix_stddev_matrix_stddev_component__ = __webpack_require__("../../../../../src/app/matrix-stddev/matrix-stddev.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__shared_matrix_editor_matrix_editor_component__ = __webpack_require__("../../../../../src/app/shared/matrix-editor/matrix-editor.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matrix_covariance_matrix_covariance_component__ = __webpack_require__("../../../../../src/app/matrix-covariance/matrix-covariance.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__shared_matrix_view_matrix_view_component__ = __webpack_require__("../../../../../src/app/shared/matrix-view/matrix-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__shared_matrix_loader_matrix_loader_component__ = __webpack_require__("../../../../../src/app/shared/matrix-loader/matrix-loader.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__matrix_correlation_matrix_correlation_component__ = __webpack_require__("../../../../../src/app/matrix-correlation/matrix-correlation.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__var_hist_var_hist_component__ = __webpack_require__("../../../../../src/app/var-hist/var-hist.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_matrix_table_matrix_table_component__ = __webpack_require__("../../../../../src/app/shared/matrix-table/matrix-table.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_api__ = __webpack_require__("../../../../../src/app/shared/api/index.ts");
 /* unused harmony export highchartsFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -105,6 +109,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
 
 
 
@@ -134,29 +142,33 @@ var AppModule = (function () {
 AppModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["NgModule"])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-            __WEBPACK_IMPORTED_MODULE_6__binomial_coef_binomial_coef_component__["a" /* BinomialCoefComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__binomial_law_binomial_law_component__["a" /* BinomialLawComponent */],
-            __WEBPACK_IMPORTED_MODULE_8__binomial_distrib_binomial_distrib_component__["a" /* BinomialDistribComponent */],
-            __WEBPACK_IMPORTED_MODULE_9__matrix_stddev_matrix_stddev_component__["a" /* MatrixStddevComponent */],
-            __WEBPACK_IMPORTED_MODULE_10__shared_matrix_editor_matrix_editor_component__["a" /* MatrixEditorComponent */],
-            __WEBPACK_IMPORTED_MODULE_11__matrix_covariance_matrix_covariance_component__["a" /* MatrixCovarianceComponent */],
-            __WEBPACK_IMPORTED_MODULE_12__shared_matrix_view_matrix_view_component__["a" /* MatrixViewComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__shared_matrix_loader_matrix_loader_component__["a" /* MatrixLoaderComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__matrix_correlation_matrix_correlation_component__["a" /* MatrixCorrelationComponent */]
+            __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+            __WEBPACK_IMPORTED_MODULE_7__binomial_coef_binomial_coef_component__["a" /* BinomialCoefComponent */],
+            __WEBPACK_IMPORTED_MODULE_8__binomial_law_binomial_law_component__["a" /* BinomialLawComponent */],
+            __WEBPACK_IMPORTED_MODULE_9__binomial_distrib_binomial_distrib_component__["a" /* BinomialDistribComponent */],
+            __WEBPACK_IMPORTED_MODULE_10__matrix_stddev_matrix_stddev_component__["a" /* MatrixStddevComponent */],
+            __WEBPACK_IMPORTED_MODULE_11__shared_matrix_editor_matrix_editor_component__["a" /* MatrixEditorComponent */],
+            __WEBPACK_IMPORTED_MODULE_12__matrix_covariance_matrix_covariance_component__["a" /* MatrixCovarianceComponent */],
+            __WEBPACK_IMPORTED_MODULE_13__shared_matrix_view_matrix_view_component__["a" /* MatrixViewComponent */],
+            __WEBPACK_IMPORTED_MODULE_14__shared_matrix_loader_matrix_loader_component__["a" /* MatrixLoaderComponent */],
+            __WEBPACK_IMPORTED_MODULE_15__matrix_correlation_matrix_correlation_component__["a" /* MatrixCorrelationComponent */],
+            __WEBPACK_IMPORTED_MODULE_16__var_hist_var_hist_component__["a" /* VarHistComponent */],
+            __WEBPACK_IMPORTED_MODULE_17__shared_matrix_table_matrix_table_component__["a" /* MatrixTableComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClientModule */],
             __WEBPACK_IMPORTED_MODULE_4_angular2_highcharts__["ChartModule"]
         ],
         providers: [
             {
                 provide: __WEBPACK_IMPORTED_MODULE_3_angular2_highcharts_dist_HighchartsService__["HighchartsStatic"],
                 useFactory: highchartsFactory
-            }
+            },
+            __WEBPACK_IMPORTED_MODULE_18__shared_api__["a" /* CoinDeskApiService */]
         ],
-        bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+        bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
@@ -755,7 +767,6 @@ var MatrixCovarianceComponent = (function () {
     MatrixCovarianceComponent.prototype.ngOnInit = function () {
     };
     MatrixCovarianceComponent.prototype.compute = function (ma) {
-        console.log('compute', JSON.stringify(this.matrix));
         var m = __WEBPACK_IMPORTED_MODULE_1_mathjs__["matrix"](this.matrix);
         this.biased = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__formulas__["b" /* maxtrixCovBiased */])(m);
         this.unbiased = __WEBPACK_IMPORTED_MODULE_1_mathjs__["matrix"](__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__formulas__["c" /* maxtrixCovUnbiased */])(this.matrix));
@@ -855,6 +866,86 @@ MatrixStddevComponent = __decorate([
 ], MatrixStddevComponent);
 
 //# sourceMappingURL=matrix-stddev.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/api/coin-desk-api/coin-desk-api.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__ = __webpack_require__("../../../../rxjs/add/operator/take.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoinDeskApiService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var CoinDeskApiService = (function () {
+    function CoinDeskApiService(http) {
+        this.http = http;
+    }
+    CoinDeskApiService.prototype.getBpiHistory = function (start, end) {
+        var url = "https://api.coindesk.com/v1/bpi/historical/close.json?start=" + start + "&end=" + end;
+        console.log('http', url);
+        return this.http.get(url).take(1)
+            .toPromise()
+            .then(function (data) {
+            var result;
+            var bpi = [];
+            var bpiJSON = data['bpi'];
+            var dates = Object.keys(data['bpi']);
+            for (var _i = 0, dates_1 = dates; _i < dates_1.length; _i++) {
+                var dt = dates_1[_i];
+                var value = bpiJSON[dt];
+                bpi.push([dt, value]);
+            }
+            return { bpi: bpi };
+        });
+    };
+    return CoinDeskApiService;
+}());
+CoinDeskApiService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]) === "function" && _a || Object])
+], CoinDeskApiService);
+
+var _a;
+//# sourceMappingURL=coin-desk-api.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/api/coin-desk-api/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_service__ = __webpack_require__("../../../../../src/app/shared/api/coin-desk-api/coin-desk-api.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_service__["a"]; });
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/api/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_index__ = __webpack_require__("../../../../../src/app/shared/api/coin-desk-api/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_index__["a"]; });
+
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -1174,6 +1265,104 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/matrix-table/matrix-table.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host {\n  position: relative;\n  top: 0;\n  left: 0;\n  display: block;\n}\n\n.icon {\n  position: absolute;\n  display: block;\n  right: 0;\n  top: -40px;\n}\n\ntable {\n  margin: auto;\n}\n\ntd {\n  padding: 6px;\n}\n\ntbody {\n    display:block;\n    height:45vh;\n    overflow:auto;\n}\nthead, tbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;/* even columns width , fix width of table too*/\n}\nthead {\n    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/matrix-table/matrix-table.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<table class=\"table table-bordered table-striped\">\n  <thead>\n    <tr>\n      <th *ngFor=\"let h of headers\">{{h.label}}</th>\n    </tr>\n  </thead>\n  <tr *ngFor=\"let row of data; let i = index\">\n    <td *ngFor=\"let cell of row; let j = index\">\n      <div *ngIf=\"headers[j]; let header\">\n        <div *ngIf=\"header.type === 'numeric'\">\n          {{ cell | number:'1.0-4'}} {{ header.afterValue }}\n        </div>\n        <div *ngIf=\"header.type === 'string'\">\n          {{ cell }}\n        </div>\n      </div>\n    </td>\n  </tr>\n</table>\n<div class=\"icon btn btn-default\" (click)=\"saveAsCsv()\">\n  <i class=\"fa fa-download\"></i>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/matrix-table/matrix-table.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MatrixTableComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MatrixTableComponent = (function () {
+    function MatrixTableComponent() {
+    }
+    MatrixTableComponent.prototype.ngOnInit = function () {
+    };
+    MatrixTableComponent.prototype.toCsv = function () {
+        var _this = this;
+        if (!this.data) {
+            return '';
+        }
+        return this.data.map(function (row) { return row.map(function (n) { return _this.normalize(n); }).join(','); }).join('\r\n');
+    };
+    MatrixTableComponent.prototype.normalize = function (value) {
+        return (typeof value === 'number') ? this.round(value, 4) : value;
+    };
+    MatrixTableComponent.prototype.round = function (value, decimals) {
+        var val;
+        val = Number(value) + 'e' + decimals;
+        return Number(Math.round(val) + 'e-' + decimals);
+    };
+    MatrixTableComponent.prototype.saveAsCsv = function () {
+        var csv = this.toCsv();
+        var a = document.createElement("a");
+        a.setAttribute('style', 'display: none');
+        document.body.appendChild(a);
+        var blob = new Blob([csv], { type: "octet/stream" }), url = window.URL.createObjectURL(blob);
+        a.href = url;
+        a.download = 'table.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        window.setTimeout(function () {
+            document.body.removeChild(a);
+        }, 500);
+    };
+    return MatrixTableComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], MatrixTableComponent.prototype, "data", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], MatrixTableComponent.prototype, "headers", void 0);
+MatrixTableComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-matrix-table',
+        template: __webpack_require__("../../../../../src/app/shared/matrix-table/matrix-table.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/shared/matrix-table/matrix-table.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], MatrixTableComponent);
+
+//# sourceMappingURL=matrix-table.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/matrix-view/matrix-view.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1274,6 +1463,215 @@ MatrixViewComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/var-hist/var-hist.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".panel {\n  width: 70%;\n  margin: 20px auto;\n}\n\n.badge {\n  margin: 20px 0 0 20px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-hist/var-hist.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n    </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur le cours du bitcoin\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Horizon</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.coindesk.com/\">\n      <div class=\"btn btn-info\">\n        Powered by CoinDesk\n      </div>\n    </a>\n    <br /> <br />\n    <app-matrix-table *ngIf=\"data\" [data]=\"data\" [headers]=\"headers\"></app-matrix-table>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-hist/var-hist.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_api__ = __webpack_require__("../../../../../src/app/shared/api/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__("../../../../moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs__ = __webpack_require__("../../../../mathjs/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_mathjs__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VarHistComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var VarHistComponent = (function () {
+    function VarHistComponent(coinDeskApi) {
+        this.coinDeskApi = coinDeskApi;
+        this.I = 150;
+        this.J = 7;
+        this.data = [];
+        this.headers = [
+            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
+            { label: 'P&L', afterValue: 'USD', type: 'numeric' },
+            { label: 'Confiance', afterValue: '%', type: 'numeric' },
+            { label: 'VaR', afterValue: 'USD', type: 'numeric' }
+        ];
+    }
+    VarHistComponent.prototype.ngOnInit = function () {
+        this.feed();
+    };
+    VarHistComponent.prototype.feed = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var end, I, start, res, arr, pnl, sPnl, confidence, valueAtRisk;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        end = __WEBPACK_IMPORTED_MODULE_2_moment__();
+                        I = this.I > 500 ? 500 : this.I;
+                        start = __WEBPACK_IMPORTED_MODULE_2_moment__().subtract(I, 'day');
+                        return [4 /*yield*/, this.coinDeskApi.getBpiHistory(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))];
+                    case 1:
+                        res = _a.sent();
+                        this.data = res.bpi.reverse();
+                        arr = this.toNumberArray(this.data);
+                        pnl = this.getPnl(arr);
+                        sPnl = this.getSortedPnl(pnl);
+                        confidence = this.getConfidences(sPnl, pnl);
+                        valueAtRisk = this.getValueAtRisk(pnl, 10);
+                        this.data = this.merge(this.data, pnl);
+                        this.data = this.merge(this.data, confidence);
+                        this.data = this.merge(this.data, valueAtRisk);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    VarHistComponent.prototype.indexOf2D = function (j, arr, value) {
+        for (var i = 0, ii = arr.length; i < ii; i++) {
+            if (arr[i][j] === value) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    VarHistComponent.prototype.getConfidences = function (sPnl, pnl) {
+        var _this = this;
+        return pnl.map(function (row, i) {
+            return row.map(function (value, j) {
+                var index = _this.indexOf2D(j, sPnl, value);
+                var confidence = 100 * (1 - (index + 1) / sPnl.length);
+                return confidence;
+            });
+        });
+    };
+    VarHistComponent.prototype.getValueAtRisk = function (pnl, day) {
+        return pnl.map(function (row) {
+            return row.map(function (value) {
+                return Math.sqrt(day) * value;
+            });
+        });
+    };
+    VarHistComponent.prototype.merge = function (data, pnl) {
+        return data.map(function (row, i) {
+            return row.concat(pnl[i]);
+        });
+    };
+    VarHistComponent.prototype.getSortedPnl = function (pnl) {
+        if (!pnl.length) {
+            return [];
+        }
+        var result = __WEBPACK_IMPORTED_MODULE_3_mathjs__["transpose"](pnl.slice());
+        result = result.map(function (values) {
+            values.sort(function (a, b) { return a > b ? 1 : a === b ? 0 : -1; });
+            return values;
+        });
+        return __WEBPACK_IMPORTED_MODULE_3_mathjs__["transpose"](result);
+    };
+    VarHistComponent.prototype.getPnl = function (values) {
+        if (!values.length) {
+            return [];
+        }
+        var lastRow = values[values.length - 1];
+        var otherRows = values.slice(0, -1);
+        var result = otherRows.map(function (row) {
+            return row.map(function (value, i) {
+                return value - lastRow[i];
+            });
+        });
+        result.push(lastRow.map(function () { return 0; }));
+        return result;
+    };
+    VarHistComponent.prototype.toNumberArray = function (data) {
+        return data.map(function (row) {
+            return row.slice(1);
+        });
+    };
+    VarHistComponent.prototype.toMatrix = function (data) {
+        return __WEBPACK_IMPORTED_MODULE_3_mathjs__["matrix"](data.map(function (row) {
+            return row.slice(1);
+        }));
+    };
+    return VarHistComponent;
+}());
+VarHistComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-var-hist',
+        template: __webpack_require__("../../../../../src/app/var-hist/var-hist.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/var-hist/var-hist.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api__["a" /* CoinDeskApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api__["a" /* CoinDeskApiService */]) === "function" && _a || Object])
+], VarHistComponent);
+
+var _a;
+//# sourceMappingURL=var-hist.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/environments/environment.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1309,6 +1707,265 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
 }
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
+
+/***/ }),
+
+/***/ "../../../../moment/locale recursive ^\\.\\/.*$":
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": "../../../../moment/locale/af.js",
+	"./af.js": "../../../../moment/locale/af.js",
+	"./ar": "../../../../moment/locale/ar.js",
+	"./ar-dz": "../../../../moment/locale/ar-dz.js",
+	"./ar-dz.js": "../../../../moment/locale/ar-dz.js",
+	"./ar-kw": "../../../../moment/locale/ar-kw.js",
+	"./ar-kw.js": "../../../../moment/locale/ar-kw.js",
+	"./ar-ly": "../../../../moment/locale/ar-ly.js",
+	"./ar-ly.js": "../../../../moment/locale/ar-ly.js",
+	"./ar-ma": "../../../../moment/locale/ar-ma.js",
+	"./ar-ma.js": "../../../../moment/locale/ar-ma.js",
+	"./ar-sa": "../../../../moment/locale/ar-sa.js",
+	"./ar-sa.js": "../../../../moment/locale/ar-sa.js",
+	"./ar-tn": "../../../../moment/locale/ar-tn.js",
+	"./ar-tn.js": "../../../../moment/locale/ar-tn.js",
+	"./ar.js": "../../../../moment/locale/ar.js",
+	"./az": "../../../../moment/locale/az.js",
+	"./az.js": "../../../../moment/locale/az.js",
+	"./be": "../../../../moment/locale/be.js",
+	"./be.js": "../../../../moment/locale/be.js",
+	"./bg": "../../../../moment/locale/bg.js",
+	"./bg.js": "../../../../moment/locale/bg.js",
+	"./bm": "../../../../moment/locale/bm.js",
+	"./bm.js": "../../../../moment/locale/bm.js",
+	"./bn": "../../../../moment/locale/bn.js",
+	"./bn.js": "../../../../moment/locale/bn.js",
+	"./bo": "../../../../moment/locale/bo.js",
+	"./bo.js": "../../../../moment/locale/bo.js",
+	"./br": "../../../../moment/locale/br.js",
+	"./br.js": "../../../../moment/locale/br.js",
+	"./bs": "../../../../moment/locale/bs.js",
+	"./bs.js": "../../../../moment/locale/bs.js",
+	"./ca": "../../../../moment/locale/ca.js",
+	"./ca.js": "../../../../moment/locale/ca.js",
+	"./cs": "../../../../moment/locale/cs.js",
+	"./cs.js": "../../../../moment/locale/cs.js",
+	"./cv": "../../../../moment/locale/cv.js",
+	"./cv.js": "../../../../moment/locale/cv.js",
+	"./cy": "../../../../moment/locale/cy.js",
+	"./cy.js": "../../../../moment/locale/cy.js",
+	"./da": "../../../../moment/locale/da.js",
+	"./da.js": "../../../../moment/locale/da.js",
+	"./de": "../../../../moment/locale/de.js",
+	"./de-at": "../../../../moment/locale/de-at.js",
+	"./de-at.js": "../../../../moment/locale/de-at.js",
+	"./de-ch": "../../../../moment/locale/de-ch.js",
+	"./de-ch.js": "../../../../moment/locale/de-ch.js",
+	"./de.js": "../../../../moment/locale/de.js",
+	"./dv": "../../../../moment/locale/dv.js",
+	"./dv.js": "../../../../moment/locale/dv.js",
+	"./el": "../../../../moment/locale/el.js",
+	"./el.js": "../../../../moment/locale/el.js",
+	"./en-au": "../../../../moment/locale/en-au.js",
+	"./en-au.js": "../../../../moment/locale/en-au.js",
+	"./en-ca": "../../../../moment/locale/en-ca.js",
+	"./en-ca.js": "../../../../moment/locale/en-ca.js",
+	"./en-gb": "../../../../moment/locale/en-gb.js",
+	"./en-gb.js": "../../../../moment/locale/en-gb.js",
+	"./en-ie": "../../../../moment/locale/en-ie.js",
+	"./en-ie.js": "../../../../moment/locale/en-ie.js",
+	"./en-nz": "../../../../moment/locale/en-nz.js",
+	"./en-nz.js": "../../../../moment/locale/en-nz.js",
+	"./eo": "../../../../moment/locale/eo.js",
+	"./eo.js": "../../../../moment/locale/eo.js",
+	"./es": "../../../../moment/locale/es.js",
+	"./es-do": "../../../../moment/locale/es-do.js",
+	"./es-do.js": "../../../../moment/locale/es-do.js",
+	"./es-us": "../../../../moment/locale/es-us.js",
+	"./es-us.js": "../../../../moment/locale/es-us.js",
+	"./es.js": "../../../../moment/locale/es.js",
+	"./et": "../../../../moment/locale/et.js",
+	"./et.js": "../../../../moment/locale/et.js",
+	"./eu": "../../../../moment/locale/eu.js",
+	"./eu.js": "../../../../moment/locale/eu.js",
+	"./fa": "../../../../moment/locale/fa.js",
+	"./fa.js": "../../../../moment/locale/fa.js",
+	"./fi": "../../../../moment/locale/fi.js",
+	"./fi.js": "../../../../moment/locale/fi.js",
+	"./fo": "../../../../moment/locale/fo.js",
+	"./fo.js": "../../../../moment/locale/fo.js",
+	"./fr": "../../../../moment/locale/fr.js",
+	"./fr-ca": "../../../../moment/locale/fr-ca.js",
+	"./fr-ca.js": "../../../../moment/locale/fr-ca.js",
+	"./fr-ch": "../../../../moment/locale/fr-ch.js",
+	"./fr-ch.js": "../../../../moment/locale/fr-ch.js",
+	"./fr.js": "../../../../moment/locale/fr.js",
+	"./fy": "../../../../moment/locale/fy.js",
+	"./fy.js": "../../../../moment/locale/fy.js",
+	"./gd": "../../../../moment/locale/gd.js",
+	"./gd.js": "../../../../moment/locale/gd.js",
+	"./gl": "../../../../moment/locale/gl.js",
+	"./gl.js": "../../../../moment/locale/gl.js",
+	"./gom-latn": "../../../../moment/locale/gom-latn.js",
+	"./gom-latn.js": "../../../../moment/locale/gom-latn.js",
+	"./gu": "../../../../moment/locale/gu.js",
+	"./gu.js": "../../../../moment/locale/gu.js",
+	"./he": "../../../../moment/locale/he.js",
+	"./he.js": "../../../../moment/locale/he.js",
+	"./hi": "../../../../moment/locale/hi.js",
+	"./hi.js": "../../../../moment/locale/hi.js",
+	"./hr": "../../../../moment/locale/hr.js",
+	"./hr.js": "../../../../moment/locale/hr.js",
+	"./hu": "../../../../moment/locale/hu.js",
+	"./hu.js": "../../../../moment/locale/hu.js",
+	"./hy-am": "../../../../moment/locale/hy-am.js",
+	"./hy-am.js": "../../../../moment/locale/hy-am.js",
+	"./id": "../../../../moment/locale/id.js",
+	"./id.js": "../../../../moment/locale/id.js",
+	"./is": "../../../../moment/locale/is.js",
+	"./is.js": "../../../../moment/locale/is.js",
+	"./it": "../../../../moment/locale/it.js",
+	"./it.js": "../../../../moment/locale/it.js",
+	"./ja": "../../../../moment/locale/ja.js",
+	"./ja.js": "../../../../moment/locale/ja.js",
+	"./jv": "../../../../moment/locale/jv.js",
+	"./jv.js": "../../../../moment/locale/jv.js",
+	"./ka": "../../../../moment/locale/ka.js",
+	"./ka.js": "../../../../moment/locale/ka.js",
+	"./kk": "../../../../moment/locale/kk.js",
+	"./kk.js": "../../../../moment/locale/kk.js",
+	"./km": "../../../../moment/locale/km.js",
+	"./km.js": "../../../../moment/locale/km.js",
+	"./kn": "../../../../moment/locale/kn.js",
+	"./kn.js": "../../../../moment/locale/kn.js",
+	"./ko": "../../../../moment/locale/ko.js",
+	"./ko.js": "../../../../moment/locale/ko.js",
+	"./ky": "../../../../moment/locale/ky.js",
+	"./ky.js": "../../../../moment/locale/ky.js",
+	"./lb": "../../../../moment/locale/lb.js",
+	"./lb.js": "../../../../moment/locale/lb.js",
+	"./lo": "../../../../moment/locale/lo.js",
+	"./lo.js": "../../../../moment/locale/lo.js",
+	"./lt": "../../../../moment/locale/lt.js",
+	"./lt.js": "../../../../moment/locale/lt.js",
+	"./lv": "../../../../moment/locale/lv.js",
+	"./lv.js": "../../../../moment/locale/lv.js",
+	"./me": "../../../../moment/locale/me.js",
+	"./me.js": "../../../../moment/locale/me.js",
+	"./mi": "../../../../moment/locale/mi.js",
+	"./mi.js": "../../../../moment/locale/mi.js",
+	"./mk": "../../../../moment/locale/mk.js",
+	"./mk.js": "../../../../moment/locale/mk.js",
+	"./ml": "../../../../moment/locale/ml.js",
+	"./ml.js": "../../../../moment/locale/ml.js",
+	"./mr": "../../../../moment/locale/mr.js",
+	"./mr.js": "../../../../moment/locale/mr.js",
+	"./ms": "../../../../moment/locale/ms.js",
+	"./ms-my": "../../../../moment/locale/ms-my.js",
+	"./ms-my.js": "../../../../moment/locale/ms-my.js",
+	"./ms.js": "../../../../moment/locale/ms.js",
+	"./my": "../../../../moment/locale/my.js",
+	"./my.js": "../../../../moment/locale/my.js",
+	"./nb": "../../../../moment/locale/nb.js",
+	"./nb.js": "../../../../moment/locale/nb.js",
+	"./ne": "../../../../moment/locale/ne.js",
+	"./ne.js": "../../../../moment/locale/ne.js",
+	"./nl": "../../../../moment/locale/nl.js",
+	"./nl-be": "../../../../moment/locale/nl-be.js",
+	"./nl-be.js": "../../../../moment/locale/nl-be.js",
+	"./nl.js": "../../../../moment/locale/nl.js",
+	"./nn": "../../../../moment/locale/nn.js",
+	"./nn.js": "../../../../moment/locale/nn.js",
+	"./pa-in": "../../../../moment/locale/pa-in.js",
+	"./pa-in.js": "../../../../moment/locale/pa-in.js",
+	"./pl": "../../../../moment/locale/pl.js",
+	"./pl.js": "../../../../moment/locale/pl.js",
+	"./pt": "../../../../moment/locale/pt.js",
+	"./pt-br": "../../../../moment/locale/pt-br.js",
+	"./pt-br.js": "../../../../moment/locale/pt-br.js",
+	"./pt.js": "../../../../moment/locale/pt.js",
+	"./ro": "../../../../moment/locale/ro.js",
+	"./ro.js": "../../../../moment/locale/ro.js",
+	"./ru": "../../../../moment/locale/ru.js",
+	"./ru.js": "../../../../moment/locale/ru.js",
+	"./sd": "../../../../moment/locale/sd.js",
+	"./sd.js": "../../../../moment/locale/sd.js",
+	"./se": "../../../../moment/locale/se.js",
+	"./se.js": "../../../../moment/locale/se.js",
+	"./si": "../../../../moment/locale/si.js",
+	"./si.js": "../../../../moment/locale/si.js",
+	"./sk": "../../../../moment/locale/sk.js",
+	"./sk.js": "../../../../moment/locale/sk.js",
+	"./sl": "../../../../moment/locale/sl.js",
+	"./sl.js": "../../../../moment/locale/sl.js",
+	"./sq": "../../../../moment/locale/sq.js",
+	"./sq.js": "../../../../moment/locale/sq.js",
+	"./sr": "../../../../moment/locale/sr.js",
+	"./sr-cyrl": "../../../../moment/locale/sr-cyrl.js",
+	"./sr-cyrl.js": "../../../../moment/locale/sr-cyrl.js",
+	"./sr.js": "../../../../moment/locale/sr.js",
+	"./ss": "../../../../moment/locale/ss.js",
+	"./ss.js": "../../../../moment/locale/ss.js",
+	"./sv": "../../../../moment/locale/sv.js",
+	"./sv.js": "../../../../moment/locale/sv.js",
+	"./sw": "../../../../moment/locale/sw.js",
+	"./sw.js": "../../../../moment/locale/sw.js",
+	"./ta": "../../../../moment/locale/ta.js",
+	"./ta.js": "../../../../moment/locale/ta.js",
+	"./te": "../../../../moment/locale/te.js",
+	"./te.js": "../../../../moment/locale/te.js",
+	"./tet": "../../../../moment/locale/tet.js",
+	"./tet.js": "../../../../moment/locale/tet.js",
+	"./th": "../../../../moment/locale/th.js",
+	"./th.js": "../../../../moment/locale/th.js",
+	"./tl-ph": "../../../../moment/locale/tl-ph.js",
+	"./tl-ph.js": "../../../../moment/locale/tl-ph.js",
+	"./tlh": "../../../../moment/locale/tlh.js",
+	"./tlh.js": "../../../../moment/locale/tlh.js",
+	"./tr": "../../../../moment/locale/tr.js",
+	"./tr.js": "../../../../moment/locale/tr.js",
+	"./tzl": "../../../../moment/locale/tzl.js",
+	"./tzl.js": "../../../../moment/locale/tzl.js",
+	"./tzm": "../../../../moment/locale/tzm.js",
+	"./tzm-latn": "../../../../moment/locale/tzm-latn.js",
+	"./tzm-latn.js": "../../../../moment/locale/tzm-latn.js",
+	"./tzm.js": "../../../../moment/locale/tzm.js",
+	"./uk": "../../../../moment/locale/uk.js",
+	"./uk.js": "../../../../moment/locale/uk.js",
+	"./ur": "../../../../moment/locale/ur.js",
+	"./ur.js": "../../../../moment/locale/ur.js",
+	"./uz": "../../../../moment/locale/uz.js",
+	"./uz-latn": "../../../../moment/locale/uz-latn.js",
+	"./uz-latn.js": "../../../../moment/locale/uz-latn.js",
+	"./uz.js": "../../../../moment/locale/uz.js",
+	"./vi": "../../../../moment/locale/vi.js",
+	"./vi.js": "../../../../moment/locale/vi.js",
+	"./x-pseudo": "../../../../moment/locale/x-pseudo.js",
+	"./x-pseudo.js": "../../../../moment/locale/x-pseudo.js",
+	"./yo": "../../../../moment/locale/yo.js",
+	"./yo.js": "../../../../moment/locale/yo.js",
+	"./zh-cn": "../../../../moment/locale/zh-cn.js",
+	"./zh-cn.js": "../../../../moment/locale/zh-cn.js",
+	"./zh-hk": "../../../../moment/locale/zh-hk.js",
+	"./zh-hk.js": "../../../../moment/locale/zh-hk.js",
+	"./zh-tw": "../../../../moment/locale/zh-tw.js",
+	"./zh-tw.js": "../../../../moment/locale/zh-tw.js"
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = "../../../../moment/locale recursive ^\\.\\/.*$";
 
 /***/ }),
 
