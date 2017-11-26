@@ -24,7 +24,6 @@ export class MatrixCovarianceComponent implements OnInit {
   }
 
   compute(ma : Matrix) {
-    console.log('compute', JSON.stringify(this.matrix));
     const m = math.matrix(this.matrix);
 
     this.biased = maxtrixCovBiased(m);

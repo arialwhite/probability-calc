@@ -1,0 +1,35 @@
+:host {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+}
+
+.icon {
+  position: absolute;
+  display: block;
+  right: 0;
+  top: -40px;
+}
+
+table {
+  margin: auto;
+}
+
+td {
+  padding: 6px;
+}
+
+tbody {
+    display:block;
+    height:45vh;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+}

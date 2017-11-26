@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th *ngFor="let h of headers">{{h.label}}</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let row of data; let i = index">
+    <td *ngFor="let cell of row; let j = index">
+      <div *ngIf="headers[j]; let header">
+        <div *ngIf="header.type === 'numeric'">
+          {{ cell | number:'1.0-4'}} {{ header.afterValue }}
+        </div>
+        <div *ngIf="header.type === 'string'">
+          {{ cell }}
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+<div class="icon btn btn-default" (click)="saveAsCsv()">
+  <i class="fa fa-download"></i>
+</div>

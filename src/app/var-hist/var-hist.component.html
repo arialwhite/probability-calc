@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    VaR historique
+    </div>
+  <p class="badge">
+    Exemple : calcul de la VaR historique sur le cours du bitcoin
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>Horizon</td>
+        <td><input class="form-control" placeholder="Nombre de lignes" [(ngModel)]="I" (ngModelChange)="feed()" required></td>
+      </tr>
+    </table>
+    <br />
+    <hr />
+    <a href="https://www.coindesk.com/">
+      <div class="btn btn-info">
+        Powered by CoinDesk
+      </div>
+    </a>
+    <br /> <br />
+    <app-matrix-table *ngIf="data" [data]="data" [headers]="headers"></app-matrix-table>
+  </div>
+</div>
