@@ -1484,7 +1484,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/var-hist/var-hist.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n    </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur le cours du bitcoin\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Horizon</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.coindesk.com/\">\n      <div class=\"btn btn-info\">\n        Powered by CoinDesk\n      </div>\n    </a>\n    <br /> <br />\n    <app-matrix-table *ngIf=\"data\" [data]=\"data\" [headers]=\"headers\"></app-matrix-table>\n  </div>\n</div>"
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n    </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur le cours du bitcoin\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Nombre de jours</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n      <tr>\n        <td>Horizon</td>\n        <td><input class=\"form-control\" placeholder=\"Période détention\" [(ngModel)]=\"horizon\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.coindesk.com/\">\n      <div class=\"btn btn-info\">\n        Powered by CoinDesk\n      </div>\n    </a>\n    <br /> <br />\n    <app-matrix-table *ngIf=\"data\" [data]=\"data\" [headers]=\"headers\"></app-matrix-table>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1552,7 +1552,7 @@ var VarHistComponent = (function () {
     function VarHistComponent(coinDeskApi) {
         this.coinDeskApi = coinDeskApi;
         this.I = 150;
-        this.J = 7;
+        this.horizon = 10;
         this.data = [];
         this.headers = [
             { label: 'Date', afterValue: undefined, type: 'string' },
@@ -1582,7 +1582,7 @@ var VarHistComponent = (function () {
                         pnl = this.getPnl(arr);
                         sPnl = this.getSortedPnl(pnl);
                         confidence = this.getConfidences(sPnl, pnl);
-                        valueAtRisk = this.getValueAtRisk(pnl, 10);
+                        valueAtRisk = this.getValueAtRisk(pnl, this.horizon);
                         this.data = this.merge(this.data, pnl);
                         this.data = this.merge(this.data, confidence);
                         this.data = this.merge(this.data, valueAtRisk);
