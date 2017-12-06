@@ -18,7 +18,10 @@ import { MatrixCorrelationComponent } from './matrix-correlation/matrix-correlat
 import { VarHistComponent } from './var-hist/var-hist.component';
 import { MatrixTableComponent } from './shared/matrix-table/matrix-table.component';
 
-import { CoinDeskApiService } from './shared/api';
+import { CoinDeskApiService, AlphaVantageApiService } from './shared/api';
+import { VarCovComponent } from './var-cov/var-cov.component';
+
+import { CacheModule, CacheLoader, CacheStaticLoader } from '@ngx-cache/core';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -27,6 +30,17 @@ export function highchartsFactory() {
     dd(hc);
     return hc;
 }
+
+export function cacheFactory(): CacheLoader {
+  return new CacheStaticLoader({
+    key: 'NGX_CACHE',
+    lifeSpan: {
+      "expiry": 1000 * 3600,
+      "TTL":  1000 * 3600
+    }
+  });
+}
+
 
 @NgModule({
   declarations: [
@@ -41,20 +55,26 @@ export function highchartsFactory() {
     MatrixLoaderComponent,
     MatrixCorrelationComponent,
     VarHistComponent,
-    MatrixTableComponent
+    MatrixTableComponent,
+    VarCovComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    ChartModule
+    ChartModule,
+    CacheModule.forRoot({
+      provide: CacheLoader,
+      useFactory: (cacheFactory)
+    })
   ],
   providers: [
     {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
     },
-    CoinDeskApiService
+    CoinDeskApiService,
+    AlphaVantageApiService
   ],
   bootstrap: [AppComponent]
 })

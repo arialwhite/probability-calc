@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
+    "@ngx-cache/core": "^4.0.1",
     "@types/mathjs": "0.0.35",
     "angular2-highcharts": "^0.5.5",
     "bootstrap": "^3.3.7",

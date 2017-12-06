@@ -1,1 +1,2 @@
-export * from './coin-desk-api/index';
+export * from './coin-desk-api';
+export * from './alpha-vantage-api';

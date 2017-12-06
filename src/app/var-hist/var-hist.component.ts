@@ -18,7 +18,7 @@ import { stdDevMatrix } from '../formulas';
 export class VarHistComponent implements OnInit {
 
   I = 150;
-  J = 7;
+  horizon = 10;
   data: any[][] = [];
 
   headers: ITableHeader[] = [
@@ -40,7 +40,7 @@ export class VarHistComponent implements OnInit {
   async feed() {
     const end = moment();
 
-    const I = this.I > 500 ? 500 : this.I;
+    const I = this.I > 501 ? 501 : this.I;
     const start = moment().subtract(I, 'day');
 
     const res = await this.coinDeskApi.getBpiHistory(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
@@ -52,7 +52,7 @@ export class VarHistComponent implements OnInit {
     const sPnl = this.getSortedPnl(pnl);
     const confidence = this.getConfidences(sPnl, pnl);
 
-    const valueAtRisk = this.getValueAtRisk(pnl, 10);
+    const valueAtRisk = this.getValueAtRisk(pnl, this.horizon);
 
     this.data = this.merge(this.data, pnl);
     this.data = this.merge(this.data, confidence);

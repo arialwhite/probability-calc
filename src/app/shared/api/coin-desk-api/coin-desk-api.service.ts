@@ -14,7 +14,6 @@ export class CoinDeskApiService {
   getBpiHistory(start: string, end: string): Promise<IBpiHistory> {
     const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${start}&end=${end}`;
 
-    console.log('http', url);
     return this.http.get(url).take(1)
       .toPromise()
       .then(data => {
