@@ -34,7 +34,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <div id=\"wrapper\" class=\"toggled\">\n\n        <div id=\"sidebar-wrapper\">\n            <ul class=\"sidebar-nav\">\n                <li class=\"sidebar-brand\">\n                    <a href=\"#\">\n                        Navigation\n                    </a>\n                </li>\n                <li *ngFor=\"let m of menus\" \n                    [ngClass]=\"{'selected': selectedMenu === m}\"\n                    >\n                    <a href=\"#\" \n                       (click)=\"select(m)\"\n                       >{{m}}\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Loi binomial'\">\n            <div class=\"container-fluid\">\n              <app-binomial-coef></app-binomial-coef>\n              <app-binomial-law></app-binomial-law>\n              <app-binomial-distrib></app-binomial-distrib>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Covariance'\">\n            <div class=\"container-fluid\">\n              <app-matrix-stddev></app-matrix-stddev>\n              <app-matrix-covariance></app-matrix-covariance>\n              <app-matrix-correlation></app-matrix-correlation>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'VaR'\">\n            <div class=\"container-fluid\">\n              <app-var-hist></app-var-hist>\n            </div>\n        </div>\n\n    </div>\n"
+module.exports = "  <div id=\"wrapper\" class=\"toggled\">\n\n        <div id=\"sidebar-wrapper\">\n            <ul class=\"sidebar-nav\">\n                <li class=\"sidebar-brand\">\n                    <a href=\"#\">\n                        Navigation\n                    </a>\n                </li>\n                <li *ngFor=\"let m of menus\" \n                    [ngClass]=\"{'selected': selectedMenu === m}\"\n                    >\n                    <a href=\"#\" \n                       (click)=\"select(m)\"\n                       >{{m}}\n                    </a>\n                </li>\n            </ul>\n        </div>\n\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Loi binomial'\">\n            <div class=\"container-fluid\">\n              <app-binomial-coef></app-binomial-coef>\n              <app-binomial-law></app-binomial-law>\n              <app-binomial-distrib></app-binomial-distrib>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'Covariance'\">\n            <div class=\"container-fluid\">\n              <app-matrix-stddev></app-matrix-stddev>\n              <app-matrix-covariance></app-matrix-covariance>\n              <app-matrix-correlation></app-matrix-correlation>\n            </div>\n        </div>\n        <div id=\"page-content-wrapper\" *ngIf=\"selectedMenu == 'VaR'\">\n            <div class=\"container-fluid\">\n              <app-var-hist></app-var-hist>\n              <app-var-hist-two></app-var-hist-two>\n            </div>\n        </div>\n\n    </div>\n"
 
 /***/ }),
 
@@ -101,7 +101,12 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__var_hist_var_hist_component__ = __webpack_require__("../../../../../src/app/var-hist/var-hist.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__shared_matrix_table_matrix_table_component__ = __webpack_require__("../../../../../src/app/shared/matrix-table/matrix-table.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__shared_api__ = __webpack_require__("../../../../../src/app/shared/api/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__var_cov_var_cov_component__ = __webpack_require__("../../../../../src/app/var-cov/var-cov.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__ngx_cache_core__ = __webpack_require__("../../../../@ngx-cache/core/@ngx-cache/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__var_hist_two_var_hist_two_component__ = __webpack_require__("../../../../../src/app/var-hist-two/var-hist-two.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__shared_multi_matrix_table_multi_matrix_table_component__ = __webpack_require__("../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.ts");
 /* unused harmony export highchartsFactory */
+/* unused harmony export cacheFactory */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -128,11 +133,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
 function highchartsFactory() {
     var hc = __webpack_require__("../../../../highcharts/highstock.js");
     var dd = __webpack_require__("../../../../highcharts/modules/exporting.js");
     dd(hc);
     return hc;
+}
+function cacheFactory() {
+    return new __WEBPACK_IMPORTED_MODULE_20__ngx_cache_core__["a" /* CacheStaticLoader */]({
+        key: 'NGX_CACHE',
+        lifeSpan: {
+            "expiry": 1000 * 3600,
+            "TTL": 1000 * 3600
+        }
+    });
 }
 var AppModule = (function () {
     function AppModule() {
@@ -153,20 +171,28 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__shared_matrix_loader_matrix_loader_component__["a" /* MatrixLoaderComponent */],
             __WEBPACK_IMPORTED_MODULE_15__matrix_correlation_matrix_correlation_component__["a" /* MatrixCorrelationComponent */],
             __WEBPACK_IMPORTED_MODULE_16__var_hist_var_hist_component__["a" /* VarHistComponent */],
-            __WEBPACK_IMPORTED_MODULE_17__shared_matrix_table_matrix_table_component__["a" /* MatrixTableComponent */]
+            __WEBPACK_IMPORTED_MODULE_17__shared_matrix_table_matrix_table_component__["a" /* MatrixTableComponent */],
+            __WEBPACK_IMPORTED_MODULE_19__var_cov_var_cov_component__["a" /* VarCovComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__var_hist_two_var_hist_two_component__["a" /* VarHistTwoComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__shared_multi_matrix_table_multi_matrix_table_component__["a" /* MultiMatrixTableComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__angular_common_http__["a" /* HttpClientModule */],
-            __WEBPACK_IMPORTED_MODULE_4_angular2_highcharts__["ChartModule"]
+            __WEBPACK_IMPORTED_MODULE_4_angular2_highcharts__["ChartModule"],
+            __WEBPACK_IMPORTED_MODULE_20__ngx_cache_core__["b" /* CacheModule */].forRoot({
+                provide: __WEBPACK_IMPORTED_MODULE_20__ngx_cache_core__["c" /* CacheLoader */],
+                useFactory: (cacheFactory)
+            })
         ],
         providers: [
             {
                 provide: __WEBPACK_IMPORTED_MODULE_3_angular2_highcharts_dist_HighchartsService__["HighchartsStatic"],
                 useFactory: highchartsFactory
             },
-            __WEBPACK_IMPORTED_MODULE_18__shared_api__["a" /* CoinDeskApiService */]
+            __WEBPACK_IMPORTED_MODULE_18__shared_api__["CoinDeskApiService"],
+            __WEBPACK_IMPORTED_MODULE_18__shared_api__["AlphaVantageApiService"]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
     })
@@ -869,6 +895,125 @@ MatrixStddevComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/api/alpha-vantage-api/alpha-vantage-api.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__ = __webpack_require__("../../../../rxjs/add/operator/take.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_take__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlphaVantageApiService; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AlphaVantageApiService = (function () {
+    function AlphaVantageApiService(http) {
+        this.http = http;
+    }
+    AlphaVantageApiService.prototype.getBitCoinHistory = function (size, live) {
+        if (live === void 0) { live = true; }
+        var url = live ? "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=OJL446MIQFZVACMN"
+            : './assets/data/alphavantage-BCT.json';
+        return this.http.get(url).take(1)
+            .toPromise()
+            .then(function (data) {
+            var result;
+            var content = [];
+            var bpiJSON = data['Time Series (Digital Currency Daily)'];
+            var dates = Object.keys(data['Time Series (Digital Currency Daily)']);
+            for (var _i = 0, dates_1 = dates; _i < dates_1.length; _i++) {
+                var dt = dates_1[_i];
+                var value = bpiJSON[dt]['4a. close (USD)'];
+                content.push([dt, value]);
+            }
+            return { data: content.slice(0, size + 1) };
+        });
+    };
+    AlphaVantageApiService.prototype.getEthereumHistory = function (size, live) {
+        if (live === void 0) { live = true; }
+        var url = live ? "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=ETH&market=USD&apikey=OJL446MIQFZVACMN"
+            : './assets/data/alphavantage-ETH.json';
+        return this.http.get(url).take(1)
+            .toPromise()
+            .then(function (data) {
+            var result;
+            var content = [];
+            var bpiJSON = data['Time Series (Digital Currency Daily)'];
+            var dates = Object.keys(data['Time Series (Digital Currency Daily)']);
+            for (var _i = 0, dates_2 = dates; _i < dates_2.length; _i++) {
+                var dt = dates_2[_i];
+                var value = bpiJSON[dt]['4a. close (USD)'];
+                content.push([dt, value]);
+            }
+            return { data: content.slice(0, size + 1) };
+        });
+    };
+    AlphaVantageApiService.prototype.getDashHistory = function (size, live) {
+        if (live === void 0) { live = true; }
+        var url = live ? "https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=DASH&market=USD&apikey=OJL446MIQFZVACMN"
+            : './assets/data/alphavantage-DASH.json';
+        return this.http.get(url).take(1)
+            .toPromise()
+            .then(function (data) {
+            var result;
+            var content = [];
+            var bpiJSON = data['Time Series (Digital Currency Daily)'];
+            var dates = Object.keys(data['Time Series (Digital Currency Daily)']);
+            for (var _i = 0, dates_3 = dates; _i < dates_3.length; _i++) {
+                var dt = dates_3[_i];
+                var value = bpiJSON[dt]['4a. close (USD)'];
+                content.push([dt, value]);
+            }
+            return { data: content.slice(0, size + 1) };
+        });
+    };
+    return AlphaVantageApiService;
+}());
+AlphaVantageApiService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["b" /* HttpClient */]) === "function" && _a || Object])
+], AlphaVantageApiService);
+
+var _a;
+//# sourceMappingURL=alpha-vantage-api.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/api/alpha-vantage-api/index.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__time_serie__ = __webpack_require__("../../../../../src/app/shared/api/alpha-vantage-api/time-serie.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__time_serie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__time_serie__);
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_0__time_serie__, "AlphaVantageApiService")) __webpack_require__.d(__webpack_exports__, "AlphaVantageApiService", function() { return __WEBPACK_IMPORTED_MODULE_0__time_serie__["AlphaVantageApiService"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alpha_vantage_api_service__ = __webpack_require__("../../../../../src/app/shared/api/alpha-vantage-api/alpha-vantage-api.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "AlphaVantageApiService", function() { return __WEBPACK_IMPORTED_MODULE_1__alpha_vantage_api_service__["a"]; });
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/api/alpha-vantage-api/time-serie.ts":
+/***/ (function(module, exports) {
+
+//# sourceMappingURL=time-serie.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/shared/api/coin-desk-api/coin-desk-api.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -899,7 +1044,6 @@ var CoinDeskApiService = (function () {
     }
     CoinDeskApiService.prototype.getBpiHistory = function (start, end) {
         var url = "https://api.coindesk.com/v1/bpi/historical/close.json?start=" + start + "&end=" + end;
-        console.log('http', url);
         return this.http.get(url).take(1)
             .toPromise()
             .then(function (data) {
@@ -942,8 +1086,11 @@ var _a;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_index__ = __webpack_require__("../../../../../src/app/shared/api/coin-desk-api/index.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__coin_desk_api_index__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__coin_desk_api__ = __webpack_require__("../../../../../src/app/shared/api/coin-desk-api/index.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "CoinDeskApiService", function() { return __WEBPACK_IMPORTED_MODULE_0__coin_desk_api__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alpha_vantage_api__ = __webpack_require__("../../../../../src/app/shared/api/alpha-vantage-api/index.ts");
+/* harmony namespace reexport (by used) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_1__alpha_vantage_api__, "AlphaVantageApiService")) __webpack_require__.d(__webpack_exports__, "AlphaVantageApiService", function() { return __WEBPACK_IMPORTED_MODULE_1__alpha_vantage_api__["AlphaVantageApiService"]; });
+
 
 //# sourceMappingURL=index.js.map
 
@@ -1286,7 +1433,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/shared/matrix-table/matrix-table.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table table-bordered table-striped\">\n  <thead>\n    <tr>\n      <th *ngFor=\"let h of headers\">{{h.label}}</th>\n    </tr>\n  </thead>\n  <tr *ngFor=\"let row of data; let i = index\">\n    <td *ngFor=\"let cell of row; let j = index\">\n      <div *ngIf=\"headers[j]; let header\">\n        <div *ngIf=\"header.type === 'numeric'\">\n          {{ cell | number:'1.0-4'}} {{ header.afterValue }}\n        </div>\n        <div *ngIf=\"header.type === 'string'\">\n          {{ cell }}\n        </div>\n      </div>\n    </td>\n  </tr>\n</table>\n<div class=\"icon btn btn-default\" (click)=\"saveAsCsv()\">\n  <i class=\"fa fa-download\"></i>\n</div>"
+module.exports = "<table class=\"table table-bordered table-striped\">\n  <thead>\n    <tr>\n      <th *ngFor=\"let h of headers\">{{h.label}}</th>\n    </tr>\n  </thead>\n  <tr *ngFor=\"let row of data; let i = index\">\n    <td *ngFor=\"let cell of row; let j = index\">\n      <div *ngIf=\"headers[j]; let header\">\n        <div *ngIf=\"header.type === 'numeric'\">\n          {{ cell | number:'1.0-4'}} {{ cell ? header.afterValue : undefined }}\n        </div>\n        <div *ngIf=\"header.type === 'string'\">\n          {{ cell }}\n        </div>\n      </div>\n    </td>\n  </tr>\n</table>\n<div class=\"icon btn btn-default\" (click)=\"saveAsCsv()\">\n  <i class=\"fa fa-download\"></i>\n</div>"
 
 /***/ }),
 
@@ -1463,6 +1610,532 @@ MatrixViewComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ":host {\n  position: relative;\n  top: 0;\n  left: 0;\n  display: block;\n}\n\n.btn-right {\n  position: absolute;\n  display: block;\n  right: 50px;\n  top: -50px;\n}\n\n.btn-left {\n  position: absolute;\n  display: block;\n  right: 100px;\n  top: -50px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"icon btn btn-default btn-left\" (click)=\"go(page - 1)\" *ngIf=\"page > 0\">\n  <i class=\"fa fa-arrow-circle-left fa-2x\" aria-hidden=\"true\"></i>\n</div>\n<div class=\"icon btn btn-default btn-right\" (click)=\"go(page + 1)\" *ngIf=\"page + 1 < headers.length\">\n  <i class=\"fa fa-arrow-circle-right fa-2x\" aria-hidden=\"true\"></i>\n</div>\n<div *ngFor=\"let h of headers; let i = index\">\n  <app-matrix-table [data]=\"data[i]\" [headers]=\"h\" *ngIf=\"page === i\"></app-matrix-table>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultiMatrixTableComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MultiMatrixTableComponent = (function () {
+    function MultiMatrixTableComponent() {
+        this.page = 0;
+    }
+    MultiMatrixTableComponent.prototype.ngOnInit = function () {
+        this.page = parseInt(localStorage.getItem(this.name), 10) || 0;
+    };
+    MultiMatrixTableComponent.prototype.go = function (page) {
+        this.page = page;
+        localStorage.setItem(this.name, String(this.page));
+    };
+    return MultiMatrixTableComponent;
+}());
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", String)
+], MultiMatrixTableComponent.prototype, "name", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], MultiMatrixTableComponent.prototype, "data", void 0);
+__decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Array)
+], MultiMatrixTableComponent.prototype, "headers", void 0);
+MultiMatrixTableComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-multi-matrix-table',
+        template: __webpack_require__("../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/shared/multi-matrix-table/multi-matrix-table.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], MultiMatrixTableComponent);
+
+//# sourceMappingURL=multi-matrix-table.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-cov/var-cov.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".panel {\n  width: 70%;\n  margin: 20px auto;\n}\n\n.badge {\n  margin: 20px 0 0 20px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-cov/var-cov.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR Covariance-Variance\n    </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR avec la méthode Covariance-Variance sur le bitcoin et l'Ethereum\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Nombre de jours</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"I\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n      <tr>\n        <td>Horizon</td>\n        <td><input class=\"form-control\" placeholder=\"Période détention\" [(ngModel)]=\"horizon\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.alphavantage.co\">\n      <div class=\"btn btn-success\">\n        Powered by Alphavantage\n      </div>\n    </a>\n    <br /> <br />\n    <app-matrix-table *ngIf=\"data\" [data]=\"data\" [headers]=\"headers\"></app-matrix-table>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-cov/var-cov.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_api__ = __webpack_require__("../../../../../src/app/shared/api/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__("../../../../moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs__ = __webpack_require__("../../../../mathjs/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_mathjs__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VarCovComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var VarCovComponent = (function () {
+    function VarCovComponent(alphaVantageApi) {
+        this.alphaVantageApi = alphaVantageApi;
+        this.I = 150;
+        this.horizon = 10;
+        this.data = [];
+        this.headers = [
+            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
+            { label: 'Ethereum', afterValue: 'USD', type: 'numeric' },
+            { label: 'Dash', afterValue: 'USD', type: 'numeric' }
+        ];
+    }
+    VarCovComponent.prototype.ngOnInit = function () {
+        this.feed();
+    };
+    VarCovComponent.prototype.getData = function (I) {
+        return Promise.all([
+            this.alphaVantageApi.getBitCoinHistory(I),
+            this.alphaVantageApi.getEthereumHistory(I),
+            this.alphaVantageApi.getDashHistory(I)
+        ]);
+    };
+    VarCovComponent.prototype.feed = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var end, I, start, series, bitCoin, ethereum, dash;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        end = __WEBPACK_IMPORTED_MODULE_2_moment__();
+                        I = this.I > 501 ? 501 : this.I;
+                        start = __WEBPACK_IMPORTED_MODULE_2_moment__().subtract(I, 'day');
+                        return [4 /*yield*/, this.getData(I)];
+                    case 1:
+                        series = _a.sent();
+                        bitCoin = series[0];
+                        ethereum = series[1];
+                        dash = series[2];
+                        this.data = bitCoin.data;
+                        this.data = this.mergeTimeSerie(this.data, ethereum);
+                        this.data = this.mergeTimeSerie(this.data, dash);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    VarCovComponent.prototype.mergeTimeSerie = function (data, serie) {
+        return data.map(function (row, i) {
+            return row.concat([serie.data[i][1]]);
+        });
+    };
+    VarCovComponent.prototype.merge = function (data, matrix) {
+        return data.map(function (row, i) {
+            return row.concat(matrix[i]);
+        });
+    };
+    VarCovComponent.prototype.toNumberArray = function (data) {
+        return data.map(function (row) {
+            return row.slice(1);
+        });
+    };
+    VarCovComponent.prototype.toMatrix = function (data) {
+        return __WEBPACK_IMPORTED_MODULE_3_mathjs__["matrix"](data.map(function (row) {
+            return row.slice(1);
+        }));
+    };
+    return VarCovComponent;
+}());
+VarCovComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-var-cov',
+        template: __webpack_require__("../../../../../src/app/var-cov/var-cov.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/var-cov/var-cov.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api__["AlphaVantageApiService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api__["AlphaVantageApiService"]) === "function" && _a || Object])
+], VarCovComponent);
+
+var _a;
+//# sourceMappingURL=var-cov.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-hist-two/var-hist-two.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".panel {\n  width: 70%;\n  margin: 20px auto;\n}\n\n.badge {\n  margin: 20px 0 0 20px;\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-hist-two/var-hist-two.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n  </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur un portfeuille de plusieurs indices\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Nombre de Bitcoins</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"bcCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n      <tr>\n        <td>Nombre d'Ethereums</td>\n        <td><input class=\"form-control\" placeholder=\"Période détention\" [(ngModel)]=\"ethCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.alphavantage.co\">\n      <div class=\"btn btn-success\">\n        Powered by Alphavantage\n      </div>\n    </a>\n    <span class=\"warning\">(Offline data set)</span>\n    <br /> <br />\n    <app-multi-matrix-table [name]=\"'hist-2-table'\" [data]=\"[data1, data2, data3]\" [headers]=\"[headers1, headers2, headers3]\"></app-multi-matrix-table>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/var-hist-two/var-hist-two.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_api__ = __webpack_require__("../../../../../src/app/shared/api/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__("../../../../moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs__ = __webpack_require__("../../../../mathjs/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_mathjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_mathjs__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VarHistTwoComponent; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var VarHistTwoComponent = (function () {
+    function VarHistTwoComponent(alphaVantageApi) {
+        this.alphaVantageApi = alphaVantageApi;
+        this.bcCount = 50;
+        this.ethCount = 300;
+        this.I = 501;
+        this.horizon = 10;
+        this.data1 = [];
+        this.data2 = [];
+        this.data3 = [];
+        this.headers1 = [
+            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
+            { label: 'Ethereum', afterValue: 'USD', type: 'numeric' },
+            { label: 'Scenario Bitcoin', afterValue: 'USD', type: 'numeric' },
+            { label: 'Scenario Ethereum', afterValue: 'USD', type: 'numeric' }
+        ];
+        this.headers2 = [
+            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Valeur portefeuille', afterValue: 'USD', type: 'numeric' },
+            { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' }
+        ];
+        this.headers3 = [
+            { label: 'Rang', afterValue: undefined, type: 'string' },
+            { label: 'Confiance', afterValue: '%', type: 'numeric' },
+            { label: 'VaR 1J', afterValue: 'USD', type: 'numeric' }
+        ];
+    }
+    VarHistTwoComponent.prototype.ngOnInit = function () {
+        this.feed();
+    };
+    VarHistTwoComponent.prototype.getData = function (I) {
+        return Promise.all([
+            this.alphaVantageApi.getBitCoinHistory(I, false),
+            this.alphaVantageApi.getEthereumHistory(I, false)
+        ]);
+    };
+    VarHistTwoComponent.prototype.feed = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var end, I, start, series, bitCoin, ethereum, dash, scenarioBitCoin, scenarioEthereum, portfolioSerie, currentPortfolioValue, pnl, sPnl, ranks, confidences;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        end = __WEBPACK_IMPORTED_MODULE_2_moment__();
+                        I = this.I > 501 ? 501 : this.I;
+                        start = __WEBPACK_IMPORTED_MODULE_2_moment__().subtract(I, 'day');
+                        return [4 /*yield*/, this.getData(I)];
+                    case 1:
+                        series = _a.sent();
+                        bitCoin = series[0];
+                        ethereum = series[1];
+                        dash = series[2];
+                        scenarioBitCoin = this.toScenario(bitCoin);
+                        scenarioEthereum = this.toScenario(ethereum);
+                        this.data1 = bitCoin.data;
+                        this.data1 = this.mergeTimeSerie(this.data1, ethereum);
+                        this.data1 = this.mergeTimeSerie(this.data1, scenarioBitCoin);
+                        this.data1 = this.mergeTimeSerie(this.data1, scenarioEthereum);
+                        this.data2 = this.colToMatrix(bitCoin.data, 0);
+                        portfolioSerie = this.computePortfolioValues([scenarioBitCoin, scenarioEthereum], [this.bcCount, this.ethCount]);
+                        this.data2 = this.mergeSerie(this.data2, portfolioSerie);
+                        currentPortfolioValue = this.computeCurrentPortfolioValues([bitCoin, ethereum], [this.bcCount, this.ethCount]);
+                        pnl = this.computePortfolioPnL(portfolioSerie, currentPortfolioValue);
+                        this.data2 = this.mergeSerie(this.data2, pnl);
+                        sPnl = this.sortPnl(pnl);
+                        ranks = this.getRanks(sPnl);
+                        confidences = this.getConfidences(ranks);
+                        this.data3 = this.serieToMatrix(ranks);
+                        this.data3 = this.mergeSerie(this.data3, confidences);
+                        this.data3 = this.mergeSerie(this.data3, sPnl);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    VarHistTwoComponent.prototype.getConfidences = function (ranks) {
+        return ranks.map(function (value) { return (1 - value / ranks.length) * 100; });
+    };
+    VarHistTwoComponent.prototype.getRanks = function (serie) {
+        return serie.map(function (value, i) { return i + 1; });
+    };
+    VarHistTwoComponent.prototype.sortPnl = function (values) {
+        var result = values.slice();
+        result.sort(function (a, b) { return a > b ? 1 : a === b ? 0 : -1; });
+        return result;
+    };
+    VarHistTwoComponent.prototype.toScenario = function (serie) {
+        var result = {
+            data: new Array()
+        };
+        var mostRecent = serie.data[0][1];
+        for (var i = 0, ii = serie.data.length; i < ii - 1; i++) {
+            var dt = serie.data[i][0];
+            var current = serie.data[i][1];
+            var previous = serie.data[i + 1][1];
+            var scenario = mostRecent * current / previous;
+            var item = [dt, scenario];
+            result.data.push(item);
+        }
+        return result;
+    };
+    VarHistTwoComponent.prototype.computeCurrentPortfolioValues = function (allSeries, allCounts) {
+        var result = 0;
+        for (var i = 0, ii = allSeries.length; i < ii; i++) {
+            var serie = allSeries[i];
+            var count = allCounts[i];
+            var mostRecent = serie.data[0][1];
+            result += mostRecent * count;
+        }
+        return result;
+    };
+    VarHistTwoComponent.prototype.computePortfolioPnL = function (portfolioSerie, currentPortfolioValue) {
+        return portfolioSerie.map(function (value) { return currentPortfolioValue - value; });
+    };
+    VarHistTwoComponent.prototype.computePortfolioValues = function (allScenarios, allCounts) {
+        var results = [];
+        var _loop_1 = function (i, ii) {
+            var scenarios = allScenarios[i];
+            var count = allCounts[i];
+            results[i] = scenarios.data.map(function (row) {
+                return count * row[1];
+            });
+        };
+        for (var i = 0, ii = allScenarios.length; i < ii; i++) {
+            _loop_1(i, ii);
+        }
+        if (!results.length) {
+            return [];
+        }
+        var I = results[0].length;
+        var J = results.length;
+        var portfolio = [];
+        for (var i = 0; i < I; i++) {
+            var value = 0;
+            for (var j = 0; j < J; j++) {
+                value += results[j][i];
+            }
+            portfolio[i] = value;
+        }
+        return portfolio;
+    };
+    VarHistTwoComponent.prototype.mergeTimeSerie = function (data, serie) {
+        return data.map(function (row, i) {
+            return row.concat([serie.data[i] ? serie.data[i][1] : undefined]);
+        });
+    };
+    VarHistTwoComponent.prototype.mergeSerie = function (data, serie) {
+        return data.map(function (row, i) {
+            return row.concat([serie[i]]);
+        });
+    };
+    VarHistTwoComponent.prototype.getCol = function (data, index) {
+        return data.map(function (row, i) {
+            return row[index];
+        });
+    };
+    VarHistTwoComponent.prototype.colToMatrix = function (data, index) {
+        return data.map(function (row, i) {
+            return [row[index]];
+        });
+    };
+    VarHistTwoComponent.prototype.serieToMatrix = function (data) {
+        return data.map(function (value) { return [value]; });
+    };
+    VarHistTwoComponent.prototype.merge = function (data, matrix) {
+        return data.map(function (row, i) {
+            return row.concat(matrix[i]);
+        });
+    };
+    VarHistTwoComponent.prototype.toNumberArray = function (data) {
+        return data.map(function (row) {
+            return row.slice(1);
+        });
+    };
+    VarHistTwoComponent.prototype.toMatrix = function (data) {
+        return __WEBPACK_IMPORTED_MODULE_3_mathjs__["matrix"](data.map(function (row) {
+            return row.slice(1);
+        }));
+    };
+    return VarHistTwoComponent;
+}());
+VarHistTwoComponent = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-var-hist-two',
+        template: __webpack_require__("../../../../../src/app/var-hist-two/var-hist-two.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/var-hist-two/var-hist-two.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api__["AlphaVantageApiService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api__["AlphaVantageApiService"]) === "function" && _a || Object])
+], VarHistTwoComponent);
+
+var _a;
+//# sourceMappingURL=var-hist-two.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/var-hist/var-hist.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1557,7 +2230,7 @@ var VarHistComponent = (function () {
         this.headers = [
             { label: 'Date', afterValue: undefined, type: 'string' },
             { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
-            { label: 'P&L', afterValue: 'USD', type: 'numeric' },
+            { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' },
             { label: 'Confiance', afterValue: '%', type: 'numeric' },
             { label: 'VaR', afterValue: 'USD', type: 'numeric' }
         ];
@@ -1572,7 +2245,7 @@ var VarHistComponent = (function () {
                 switch (_a.label) {
                     case 0:
                         end = __WEBPACK_IMPORTED_MODULE_2_moment__();
-                        I = this.I > 500 ? 500 : this.I;
+                        I = this.I > 501 ? 501 : this.I;
                         start = __WEBPACK_IMPORTED_MODULE_2_moment__().subtract(I, 'day');
                         return [4 /*yield*/, this.coinDeskApi.getBpiHistory(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))];
                     case 1:
@@ -1664,7 +2337,7 @@ VarHistComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/var-hist/var-hist.component.html"),
         styles: [__webpack_require__("../../../../../src/app/var-hist/var-hist.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api__["a" /* CoinDeskApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api__["a" /* CoinDeskApiService */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api__["CoinDeskApiService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api__["CoinDeskApiService"]) === "function" && _a || Object])
 ], VarHistComponent);
 
 var _a;
