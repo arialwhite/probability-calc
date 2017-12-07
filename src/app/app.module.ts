@@ -22,6 +22,8 @@ import { CoinDeskApiService, AlphaVantageApiService } from './shared/api';
 import { VarCovComponent } from './var-cov/var-cov.component';
 
 import { CacheModule, CacheLoader, CacheStaticLoader } from '@ngx-cache/core';
+import { VarHistTwoComponent } from './var-hist-two/var-hist-two.component';
+import { MultiMatrixTableComponent } from './shared/multi-matrix-table/multi-matrix-table.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -56,7 +58,9 @@ export function cacheFactory(): CacheLoader {
     MatrixCorrelationComponent,
     VarHistComponent,
     MatrixTableComponent,
-    VarCovComponent
+    VarCovComponent,
+    VarHistTwoComponent,
+    MultiMatrixTableComponent
   ],
   imports: [
     BrowserModule,

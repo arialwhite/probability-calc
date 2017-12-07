@@ -24,7 +24,7 @@ export class VarHistComponent implements OnInit {
   headers: ITableHeader[] = [
     { label: 'Date',    afterValue: undefined, type: 'string' },
     { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
-    { label: 'P&L', afterValue: 'USD', type: 'numeric' },
+    { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' },
     { label: 'Confiance', afterValue: '%', type: 'numeric' },
     { label: 'VaR', afterValue: 'USD', type: 'numeric' }
   ];

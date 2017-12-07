@@ -8,7 +8,7 @@
     <td *ngFor="let cell of row; let j = index">
       <div *ngIf="headers[j]; let header">
         <div *ngIf="header.type === 'numeric'">
-          {{ cell | number:'1.0-4'}} {{ header.afterValue }}
+          {{ cell | number:'1.0-4'}} {{ cell ? header.afterValue : undefined }}
         </div>
         <div *ngIf="header.type === 'string'">
           {{ cell }}

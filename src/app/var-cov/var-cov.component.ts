@@ -10,8 +10,6 @@ import Matrix = mathjs.Matrix;
 
 import { stdDevMatrix } from '../formulas';
 
-declare var LocalStorage;
-
 @Component({
   selector: 'app-var-cov',
   templateUrl: './var-cov.component.html',
@@ -24,10 +22,10 @@ export class VarCovComponent implements OnInit {
   data: any[][] = [];
 
   headers: ITableHeader[] = [
-    { label: 'Date',    afterValue: undefined, type: 'string' },
-    { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
-    { label: 'Ethereum', afterValue: 'USD', type: 'numeric' },
-    { label: 'Dash', afterValue: 'USD', type: 'numeric' }
+    { label: 'Date',     afterValue: undefined, type: 'string' },
+    { label: 'Bitcoin',  afterValue: 'USD',     type: 'numeric' },
+    { label: 'Ethereum', afterValue: 'USD',     type: 'numeric' },
+    { label: 'Dash',     afterValue: 'USD',     type: 'numeric' }
   ];
 
   constructor(
@@ -46,7 +44,6 @@ export class VarCovComponent implements OnInit {
     ]);
   }
 
-
   async feed() {
     const end = moment();
 
@@ -59,7 +56,7 @@ export class VarCovComponent implements OnInit {
     const ethereum = series[1];
     const dash = series[2];
     
-    this.data = bitCoin.data; //this.mergeTimeSerie(bitCoin.data, ethereum);
+    this.data = bitCoin.data;
     this.data = this.mergeTimeSerie(this.data, ethereum);
     this.data = this.mergeTimeSerie(this.data, dash);
   }

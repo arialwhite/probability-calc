@@ -1,0 +1,9 @@
+<div class="icon btn btn-default btn-left" (click)="go(page - 1)" *ngIf="page > 0">
+  <i class="fa fa-arrow-circle-left fa-2x" aria-hidden="true"></i>
+</div>
+<div class="icon btn btn-default btn-right" (click)="go(page + 1)" *ngIf="page + 1 < headers.length">
+  <i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i>
+</div>
+<div *ngFor="let h of headers; let i = index">
+  <app-matrix-table [data]="data[i]" [headers]="h" *ngIf="page === i"></app-matrix-table>
+</div>

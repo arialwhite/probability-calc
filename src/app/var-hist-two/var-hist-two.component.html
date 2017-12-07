@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    VaR historique
+  </div>
+  <p class="badge">
+    Exemple : calcul de la VaR historique sur un portfeuille de plusieurs indices
+  </p>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <td>Nombre de Bitcoins</td>
+        <td><input class="form-control" placeholder="Nombre de lignes" [(ngModel)]="bcCount" (ngModelChange)="feed()" required></td>
+      </tr>
+      <tr>
+        <td>Nombre d'Ethereums</td>
+        <td><input class="form-control" placeholder="Période détention" [(ngModel)]="ethCount" (ngModelChange)="feed()" required></td>
+      </tr>
+    </table>
+    <br />
+    <hr />
+    <a href="https://www.alphavantage.co">
+      <div class="btn btn-success">
+        Powered by Alphavantage
+      </div>
+    </a>
+    <span class="warning">(Offline data set)</span>
+    <br /> <br />
+    <app-multi-matrix-table [name]="'hist-2-table'" [data]="[data1, data2, data3]" [headers]="[headers1, headers2, headers3]"></app-multi-matrix-table>
+  </div>
+</div>
