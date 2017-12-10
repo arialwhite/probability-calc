@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/map";
 
-import { ITimeSerie } from './time-serie'
+import { ITimeSerie } from '../time-serie';
 
 @Injectable()
 export class AlphaVantageApiService {

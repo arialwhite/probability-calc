@@ -24,6 +24,7 @@ import { VarCovComponent } from './var-cov/var-cov.component';
 import { CacheModule, CacheLoader, CacheStaticLoader } from '@ngx-cache/core';
 import { VarHistTwoComponent } from './var-hist-two/var-hist-two.component';
 import { MultiMatrixTableComponent } from './shared/multi-matrix-table/multi-matrix-table.component';
+import { VolatHistComponent } from './volat-hist/volat-hist.component';
 
 declare var require: any;
 export function highchartsFactory() {
@@ -60,7 +61,8 @@ export function cacheFactory(): CacheLoader {
     MatrixTableComponent,
     VarCovComponent,
     VarHistTwoComponent,
-    MultiMatrixTableComponent
+    MultiMatrixTableComponent,
+    VolatHistComponent
   ],
   imports: [
     BrowserModule,

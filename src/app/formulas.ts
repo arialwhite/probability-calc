@@ -6,7 +6,7 @@ import Matrix = mathjs.Matrix;
 
 export { fact, bicoeff, bilaw, bilawDistrib, expectedValue, variance,
          stdDev, stdDevMatrix, maxtrixCovBiased, maxtrixCovUnbiased,
-         maxtrixCorrUnbiased, maxtrixCorrBiased };
+         maxtrixCorrUnbiased, maxtrixCorrBiased, sum, mean };
 
 function fact(n: number): number {
   return n === 0 ? 1 : n * fact(n-1);

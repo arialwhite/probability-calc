@@ -4,20 +4,20 @@ import { HttpClient } from '@angular/common/http';
 import "rxjs/add/operator/take";
 import "rxjs/add/operator/map";
 
-import { IBpiHistory } from './bpiHistory'
+import { ITimeSerie } from '../time-serie';
 
 @Injectable()
 export class CoinDeskApiService {
 
   constructor(private http: HttpClient) { }
 
-  getBpiHistory(start: string, end: string): Promise<IBpiHistory> {
+  getBpiHistory(start: string, end: string): Promise<ITimeSerie> {
     const url = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${start}&end=${end}`;
 
     return this.http.get(url).take(1)
       .toPromise()
       .then(data => {
-        let result: IBpiHistory;
+        let result: ITimeSerie;
 
         const bpi: [string, number][] = [];
 
@@ -28,7 +28,7 @@ export class CoinDeskApiService {
           bpi.push([dt, value]);
         }
 
-        return { bpi };
+        return { data: bpi };
       });
   }
 

@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Volatilité journalière
+  </div>
+  <p class="badge">
+    Exemple : Calcul de la volatilité journalière composée en continu du Bitcoin
+  </p>
+  <div class="panel-body">
+    <br />
+    <hr />
+    <a href="https://www.alphavantage.co">
+      <div class="btn btn-success">
+        Powered by Alphavantage
+      </div>
+    </a>
+    <span class="warning">
+       <label> <input  [(ngModel)]="isOffline" type="checkbox" (ngModelChange)="clearAndFeed()" /> Offline Dataset</label>
+    </span>
+    <br /> <br />
+    <app-multi-matrix-table [name]="'volat-hist-table'" [data]="[data1]" [headers]="[headers1]"></app-multi-matrix-table>
+  </div>
+  <table class="result-table">
+      <tr>
+        <td>Variance journalière : </td>
+        <td> {{dailyVariancePercent | number : '1.0-4'}} %</td>
+      </tr>
+      <tr>
+        <td>Volatilité journalière : </td>
+        <td> {{dailyVolatilityPercent | number : '1.0-4'}} %</td>
+      </tr>
+  </table>
+</div>

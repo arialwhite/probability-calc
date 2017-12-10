@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   selectedMenu: string;
-  menus = ['Loi binomial', 'Covariance', 'VaR'];
+  menus = ['Loi binomial', 'Covariance', 'VaR', 'Volatilité'];
 
   ngOnInit(): void {
     this.selectedMenu = sessionStorage.getItem('selection') || 'Loi binomial';

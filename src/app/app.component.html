@@ -38,5 +38,9 @@
               <app-var-hist-two></app-var-hist-two>
             </div>
         </div>
-
+        <div id="page-content-wrapper" *ngIf="selectedMenu == 'Volatilité'">
+            <div class="container-fluid">
+              <app-volat-hist></app-volat-hist>
+            </div>
+        </div>
     </div>

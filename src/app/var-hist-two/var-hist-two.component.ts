@@ -64,7 +64,56 @@ export class VarHistTwoComponent implements OnInit {
     ]);
   }
 
-  /**
+  async feed(): Promise<any> {
+    const end = moment();
+
+    const I = this.I > 501 ? 501 : this.I;
+    const start = moment().subtract(I, 'day');
+
+    const series = this.withoutMissingDates(await this.getData(I));
+
+    const bitCoin = series[0];
+    const ethereum = series[1];
+    const dash = series[2];
+
+    const scenarioBitCoin = this.toScenario(bitCoin);
+    const scenarioEthereum = this.toScenario(ethereum);
+    
+    this.data1 = bitCoin.data;
+    this.data1 = this.mergeTimeSerie(this.data1, ethereum);
+    this.data1 = this.mergeTimeSerie(this.data1, scenarioBitCoin);
+    this.data1 = this.mergeTimeSerie(this.data1, scenarioEthereum);
+
+    this.data2 = this.colToMatrix(bitCoin.data, 0);
+
+    const portfolioSerie = this.computePortfolioValues(
+      [scenarioBitCoin, scenarioEthereum],
+      [this.bcCount, this.ethCount]
+    );
+
+    this.data2 = this.mergeSerie(this.data2, portfolioSerie);
+
+    const currentPortfolioValue = this.computeCurrentPortfolioValues(
+      [bitCoin, ethereum],
+      [this.bcCount, this.ethCount]
+    );
+
+    const pnl = this.computePortfolioPnL(portfolioSerie, currentPortfolioValue);
+    this.data2 = this.mergeSerie(this.data2, pnl);
+
+    const sPnl = this.sortPnl(pnl);
+    const var10 = this.valueAtRisk10Days(sPnl);
+
+    const ranks = this.getRanks(sPnl);
+    const confidences = this.getConfidences(ranks);
+
+    this.data3 = this.serieToMatrix(ranks);
+    this.data3 = this.mergeSerie(this.data3, confidences);
+    this.data3 = this.mergeSerie(this.data3, sPnl);
+    this.data3 = this.mergeSerie(this.data3, var10);
+  }
+
+    /**
    * Get series with same dates number
    * 
    * At worst the number of obervation will be less than expected
@@ -126,55 +175,6 @@ export class VarHistTwoComponent implements OnInit {
   clearAndFeed(): Promise<any> {
     this.clear();
     return this.feed();
-  }
-
-  async feed(): Promise<any> {
-    const end = moment();
-
-    const I = this.I > 501 ? 501 : this.I;
-    const start = moment().subtract(I, 'day');
-
-    const series = this.withoutMissingDates(await this.getData(I));
-
-    const bitCoin = series[0];
-    const ethereum = series[1];
-    const dash = series[2];
-
-    const scenarioBitCoin = this.toScenario(bitCoin);
-    const scenarioEthereum = this.toScenario(ethereum);
-    
-    this.data1 = bitCoin.data;
-    this.data1 = this.mergeTimeSerie(this.data1, ethereum);
-    this.data1 = this.mergeTimeSerie(this.data1, scenarioBitCoin);
-    this.data1 = this.mergeTimeSerie(this.data1, scenarioEthereum);
-
-    this.data2 = this.colToMatrix(bitCoin.data, 0);
-
-    const portfolioSerie = this.computePortfolioValues(
-      [scenarioBitCoin, scenarioEthereum],
-      [this.bcCount, this.ethCount]
-    );
-
-    this.data2 = this.mergeSerie(this.data2, portfolioSerie);
-
-    const currentPortfolioValue = this.computeCurrentPortfolioValues(
-      [bitCoin, ethereum],
-      [this.bcCount, this.ethCount]
-    );
-
-    const pnl = this.computePortfolioPnL(portfolioSerie, currentPortfolioValue);
-    this.data2 = this.mergeSerie(this.data2, pnl);
-
-    const sPnl = this.sortPnl(pnl);
-    const var10 = this.valueAtRisk10Days(sPnl);
-
-    const ranks = this.getRanks(sPnl);
-    const confidences = this.getConfidences(ranks);
-
-    this.data3 = this.serieToMatrix(ranks);
-    this.data3 = this.mergeSerie(this.data3, confidences);
-    this.data3 = this.mergeSerie(this.data3, sPnl);
-    this.data3 = this.mergeSerie(this.data3, var10);
   }
 
   getConfidences(ranks: number[]): number[] {

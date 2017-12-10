@@ -44,7 +44,7 @@ export class VarHistComponent implements OnInit {
     const start = moment().subtract(I, 'day');
 
     const res = await this.coinDeskApi.getBpiHistory(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'));
-    this.data = res.bpi.reverse();
+    this.data = res.data.reverse();
 
     const arr = this.toNumberArray(this.data);
     const pnl = this.getPnl(arr);

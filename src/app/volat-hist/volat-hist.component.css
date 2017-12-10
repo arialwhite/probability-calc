@@ -1,0 +1,16 @@
+.panel {
+  width: 70%;
+  margin: 20px auto;
+}
+
+.badge {
+  margin: 20px 0 0 20px;
+}
+
+.result-table {
+  margin: 10px;
+}
+
+.result-table td {
+  padding : 10px;
+}
