@@ -33,3 +33,7 @@ thead, tbody tr {
 thead {
     width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
 }
+
+.line-number {
+  color: #aaa;
+}

@@ -28,7 +28,7 @@ export class AlphaVantageApiService {
           content.push([dt, value]);
         }
 
-        return { data: content.slice(0, size+1) };
+        return { data: content.slice(0, size) };
       });
   }
 
@@ -50,7 +50,7 @@ export class AlphaVantageApiService {
           content.push([dt, value]);
         }
 
-        return { data: content.slice(0, size+1) };
+        return { data: content.slice(0, size) };
       });
   }
 
@@ -72,7 +72,7 @@ export class AlphaVantageApiService {
           content.push([dt, value]);
         }
 
-        return { data: content.slice(0, size+1) };
+        return { data: content.slice(0, size) };
       });
   }
 }

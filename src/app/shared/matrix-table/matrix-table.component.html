@@ -11,7 +11,7 @@
           {{ cell | number:'1.0-4'}} {{ cell ? header.afterValue : undefined }}
         </div>
         <div *ngIf="header.type === 'string'">
-          {{ cell }}
+          {{ cell }} <div class="line-number pull-right">{{header.appendLineCount ? '('+(i+1)+')': ''}}</div>
         </div>
       </div>
     </td>

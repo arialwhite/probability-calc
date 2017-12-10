@@ -17,7 +17,7 @@ import { stdDevMatrix } from '../formulas';
 })
 export class VarHistComponent implements OnInit {
 
-  I = 150;
+  I = 500;
   horizon = 10;
   data: any[][] = [];
 
@@ -26,7 +26,7 @@ export class VarHistComponent implements OnInit {
     { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
     { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' },
     { label: 'Confiance', afterValue: '%', type: 'numeric' },
-    { label: 'VaR', afterValue: 'USD', type: 'numeric' }
+    { label: 'VaR 10J', afterValue: 'USD', type: 'numeric' }
   ];
 
   constructor(

@@ -23,7 +23,9 @@
         Powered by Alphavantage
       </div>
     </a>
-    <span class="warning">(Offline data set)</span>
+    <span class="warning">
+       <label> <input  [(ngModel)]="isOffline" type="checkbox" (ngModelChange)="clearAndFeed()" /> Offline Dataset</label>
+    </span>
     <br /> <br />
     <app-multi-matrix-table [name]="'hist-2-table'" [data]="[data1, data2, data3]" [headers]="[headers1, headers2, headers3]"></app-multi-matrix-table>
   </div>

@@ -26,8 +26,10 @@ export class VarHistTwoComponent implements OnInit {
   data2: any[][] = [];
   data3: any[][] = [];
 
+  isOffline = true;
+
   headers1: ITableHeader[] = [
-    { label: 'Date',              afterValue: undefined, type: 'string'  },
+    { label: 'Date',              afterValue: undefined, type: 'string', appendLineCount: true },
     { label: 'Bitcoin',           afterValue: 'USD',     type: 'numeric' },
     { label: 'Ethereum',          afterValue: 'USD',     type: 'numeric' },
     { label: 'Scenario Bitcoin',  afterValue: 'USD',     type: 'numeric' },
@@ -35,7 +37,7 @@ export class VarHistTwoComponent implements OnInit {
   ];
 
   headers2: ITableHeader[] = [
-    { label: 'Date',                afterValue: undefined, type: 'string'  },
+    { label: 'Date',                afterValue: undefined, type: 'string', appendLineCount: true },
     { label: 'Valeur portefeuille', afterValue: 'USD',     type: 'numeric' },
     { label: 'Gain & Perte', afterValue: 'USD',     type: 'numeric' }
   ];
@@ -43,7 +45,8 @@ export class VarHistTwoComponent implements OnInit {
   headers3: ITableHeader[] = [
     { label: 'Rang',                afterValue: undefined, type: 'string'  },
     { label: 'Confiance',           afterValue: '%',       type: 'numeric' },
-    { label: 'VaR 1J',        afterValue: 'USD',     type: 'numeric' }
+    { label: 'VaR 1J',         afterValue: 'USD',     type: 'numeric' },
+    { label: 'VaR 10J',        afterValue: 'USD',     type: 'numeric' }
   ];
 
   constructor(
@@ -56,18 +59,82 @@ export class VarHistTwoComponent implements OnInit {
 
   getData(I: number): Promise<ITimeSerie[]> {
     return Promise.all([
-      this.alphaVantageApi.getBitCoinHistory(I, false),
-      this.alphaVantageApi.getEthereumHistory(I, false)
+      this.alphaVantageApi.getBitCoinHistory(I, !this.isOffline),
+      this.alphaVantageApi.getEthereumHistory(I, !this.isOffline)
     ]);
   }
 
-  async feed() {
+  /**
+   * Get series with same dates number
+   * 
+   * At worst the number of obervation will be less than expected
+   */
+  withoutMissingDates(series: ITimeSerie[]) {
+    const allSizesCorrect = series.every(serie => {
+      return serie.data.length === this.I;
+    });
+
+    if (allSizesCorrect) { // no need to go further
+      return series;
+    }
+
+    // Note: may be optimized
+
+    // get available dates
+    const dates: Set<string> = new Set<string>();
+    for (const serie of series) {
+      for (const item in serie.data) {
+        dates.add(item[0]);
+      }
+    }
+
+    // find dates that not every series contain
+    const missingDates: Set<string> = new Set<string>();
+    dates.forEach(dt => {
+      const missing = false;
+      for (const serie of series) {
+        let found = false;
+        for (const item in serie.data) {
+          if(item[0] === dt) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          missingDates.add(dt);
+        }
+      }
+    });
+
+    // return series with dates that every series contain
+    return series.map(serie => {
+      const result: ITimeSerie = {
+        data: serie.data.filter(item => {
+          return !missingDates.has(item[0]);
+        })
+      };
+      return result;
+    });
+  }
+
+  clear(): void {
+    this.data1 = [];
+    this.data2 = [];
+    this.data3 = [];
+  }
+
+  clearAndFeed(): Promise<any> {
+    this.clear();
+    return this.feed();
+  }
+
+  async feed(): Promise<any> {
     const end = moment();
 
     const I = this.I > 501 ? 501 : this.I;
     const start = moment().subtract(I, 'day');
 
-    const series = await this.getData(I);
+    const series = this.withoutMissingDates(await this.getData(I));
 
     const bitCoin = series[0];
     const ethereum = series[1];
@@ -99,16 +166,21 @@ export class VarHistTwoComponent implements OnInit {
     this.data2 = this.mergeSerie(this.data2, pnl);
 
     const sPnl = this.sortPnl(pnl);
+    const var10 = this.valueAtRisk10Days(sPnl);
+
     const ranks = this.getRanks(sPnl);
     const confidences = this.getConfidences(ranks);
 
     this.data3 = this.serieToMatrix(ranks);
     this.data3 = this.mergeSerie(this.data3, confidences);
     this.data3 = this.mergeSerie(this.data3, sPnl);
+    this.data3 = this.mergeSerie(this.data3, var10);
   }
 
   getConfidences(ranks: number[]): number[] {
-    return ranks.map(value => (1 - value / ranks.length) * 100);
+    return ranks.map(value => {
+      return (1 - value / ranks.length) * 100;
+    });
   }
 
   getRanks(serie: number[]): number[] {
@@ -119,6 +191,12 @@ export class VarHistTwoComponent implements OnInit {
     const result = values.slice();
     result.sort((a,b) => a > b ? 1 : a === b ? 0 : -1);
     return result;
+  }
+
+  valueAtRisk10Days(values: number[]) {
+    return values.map(value => {
+      return Math.sqrt(10) * value;
+    });
   }
 
   toScenario(serie: ITimeSerie): ITimeSerie {
