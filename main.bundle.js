@@ -939,7 +939,7 @@ var AlphaVantageApiService = (function () {
                 var value = bpiJSON[dt]['4a. close (USD)'];
                 content.push([dt, value]);
             }
-            return { data: content.slice(0, size + 1) };
+            return { data: content.slice(0, size) };
         });
     };
     AlphaVantageApiService.prototype.getEthereumHistory = function (size, live) {
@@ -958,7 +958,7 @@ var AlphaVantageApiService = (function () {
                 var value = bpiJSON[dt]['4a. close (USD)'];
                 content.push([dt, value]);
             }
-            return { data: content.slice(0, size + 1) };
+            return { data: content.slice(0, size) };
         });
     };
     AlphaVantageApiService.prototype.getDashHistory = function (size, live) {
@@ -977,7 +977,7 @@ var AlphaVantageApiService = (function () {
                 var value = bpiJSON[dt]['4a. close (USD)'];
                 content.push([dt, value]);
             }
-            return { data: content.slice(0, size + 1) };
+            return { data: content.slice(0, size) };
         });
     };
     return AlphaVantageApiService;
@@ -1420,7 +1420,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ":host {\n  position: relative;\n  top: 0;\n  left: 0;\n  display: block;\n}\n\n.icon {\n  position: absolute;\n  display: block;\n  right: 0;\n  top: -40px;\n}\n\ntable {\n  margin: auto;\n}\n\ntd {\n  padding: 6px;\n}\n\ntbody {\n    display:block;\n    height:45vh;\n    overflow:auto;\n}\nthead, tbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;/* even columns width , fix width of table too*/\n}\nthead {\n    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */\n}\n", ""]);
+exports.push([module.i, ":host {\n  position: relative;\n  top: 0;\n  left: 0;\n  display: block;\n}\n\n.icon {\n  position: absolute;\n  display: block;\n  right: 0;\n  top: -40px;\n}\n\ntable {\n  margin: auto;\n}\n\ntd {\n  padding: 6px;\n}\n\ntbody {\n    display:block;\n    height:45vh;\n    overflow:auto;\n}\nthead, tbody tr {\n    display:table;\n    width:100%;\n    table-layout:fixed;/* even columns width , fix width of table too*/\n}\nthead {\n    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */\n}\n\n.line-number {\n  color: #aaa;\n}", ""]);
 
 // exports
 
@@ -1433,7 +1433,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/shared/matrix-table/matrix-table.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<table class=\"table table-bordered table-striped\">\n  <thead>\n    <tr>\n      <th *ngFor=\"let h of headers\">{{h.label}}</th>\n    </tr>\n  </thead>\n  <tr *ngFor=\"let row of data; let i = index\">\n    <td *ngFor=\"let cell of row; let j = index\">\n      <div *ngIf=\"headers[j]; let header\">\n        <div *ngIf=\"header.type === 'numeric'\">\n          {{ cell | number:'1.0-4'}} {{ cell ? header.afterValue : undefined }}\n        </div>\n        <div *ngIf=\"header.type === 'string'\">\n          {{ cell }}\n        </div>\n      </div>\n    </td>\n  </tr>\n</table>\n<div class=\"icon btn btn-default\" (click)=\"saveAsCsv()\">\n  <i class=\"fa fa-download\"></i>\n</div>"
+module.exports = "<table class=\"table table-bordered table-striped\">\n  <thead>\n    <tr>\n      <th *ngFor=\"let h of headers\">{{h.label}}</th>\n    </tr>\n  </thead>\n  <tr *ngFor=\"let row of data; let i = index\">\n    <td *ngFor=\"let cell of row; let j = index\">\n      <div *ngIf=\"headers[j]; let header\">\n        <div *ngIf=\"header.type === 'numeric'\">\n          {{ cell | number:'1.0-4'}} {{ cell ? header.afterValue : undefined }}\n        </div>\n        <div *ngIf=\"header.type === 'string'\">\n          {{ cell }} <div class=\"line-number pull-right\">{{header.appendLineCount ? '('+(i+1)+')': ''}}</div>\n        </div>\n      </div>\n    </td>\n  </tr>\n</table>\n<div class=\"icon btn btn-default\" (click)=\"saveAsCsv()\">\n  <i class=\"fa fa-download\"></i>\n</div>"
 
 /***/ }),
 
@@ -1877,7 +1877,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/var-hist-two/var-hist-two.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n  </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur un portfeuille de plusieurs indices\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Nombre de Bitcoins</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"bcCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n      <tr>\n        <td>Nombre d'Ethereums</td>\n        <td><input class=\"form-control\" placeholder=\"Période détention\" [(ngModel)]=\"ethCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.alphavantage.co\">\n      <div class=\"btn btn-success\">\n        Powered by Alphavantage\n      </div>\n    </a>\n    <span class=\"warning\">(Offline data set)</span>\n    <br /> <br />\n    <app-multi-matrix-table [name]=\"'hist-2-table'\" [data]=\"[data1, data2, data3]\" [headers]=\"[headers1, headers2, headers3]\"></app-multi-matrix-table>\n  </div>\n</div>"
+module.exports = "<div class=\"panel panel-default\">\n  <div class=\"panel-heading\">\n    VaR historique\n  </div>\n  <p class=\"badge\">\n    Exemple : calcul de la VaR historique sur un portfeuille de plusieurs indices\n  </p>\n  <div class=\"panel-body\">\n    <table class=\"table\">\n      <tr>\n        <td>Nombre de Bitcoins</td>\n        <td><input class=\"form-control\" placeholder=\"Nombre de lignes\" [(ngModel)]=\"bcCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n      <tr>\n        <td>Nombre d'Ethereums</td>\n        <td><input class=\"form-control\" placeholder=\"Période détention\" [(ngModel)]=\"ethCount\" (ngModelChange)=\"feed()\" required></td>\n      </tr>\n    </table>\n    <br />\n    <hr />\n    <a href=\"https://www.alphavantage.co\">\n      <div class=\"btn btn-success\">\n        Powered by Alphavantage\n      </div>\n    </a>\n    <span class=\"warning\">\n       <label> <input  [(ngModel)]=\"isOffline\" type=\"checkbox\" (ngModelChange)=\"clearAndFeed()\" /> Offline Dataset</label>\n    </span>\n    <br /> <br />\n    <app-multi-matrix-table [name]=\"'hist-2-table'\" [data]=\"[data1, data2, data3]\" [headers]=\"[headers1, headers2, headers3]\"></app-multi-matrix-table>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1951,22 +1951,24 @@ var VarHistTwoComponent = (function () {
         this.data1 = [];
         this.data2 = [];
         this.data3 = [];
+        this.isOffline = true;
         this.headers1 = [
-            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Date', afterValue: undefined, type: 'string', appendLineCount: true },
             { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
             { label: 'Ethereum', afterValue: 'USD', type: 'numeric' },
             { label: 'Scenario Bitcoin', afterValue: 'USD', type: 'numeric' },
             { label: 'Scenario Ethereum', afterValue: 'USD', type: 'numeric' }
         ];
         this.headers2 = [
-            { label: 'Date', afterValue: undefined, type: 'string' },
+            { label: 'Date', afterValue: undefined, type: 'string', appendLineCount: true },
             { label: 'Valeur portefeuille', afterValue: 'USD', type: 'numeric' },
             { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' }
         ];
         this.headers3 = [
             { label: 'Rang', afterValue: undefined, type: 'string' },
             { label: 'Confiance', afterValue: '%', type: 'numeric' },
-            { label: 'VaR 1J', afterValue: 'USD', type: 'numeric' }
+            { label: 'VaR 1J', afterValue: 'USD', type: 'numeric' },
+            { label: 'VaR 10J', afterValue: 'USD', type: 'numeric' }
         ];
     }
     VarHistTwoComponent.prototype.ngOnInit = function () {
@@ -1974,22 +1976,82 @@ var VarHistTwoComponent = (function () {
     };
     VarHistTwoComponent.prototype.getData = function (I) {
         return Promise.all([
-            this.alphaVantageApi.getBitCoinHistory(I, false),
-            this.alphaVantageApi.getEthereumHistory(I, false)
+            this.alphaVantageApi.getBitCoinHistory(I, !this.isOffline),
+            this.alphaVantageApi.getEthereumHistory(I, !this.isOffline)
         ]);
+    };
+    /**
+     * Get series with same dates number
+     *
+     * At worst the number of obervation will be less than expected
+     */
+    VarHistTwoComponent.prototype.withoutMissingDates = function (series) {
+        var _this = this;
+        var allSizesCorrect = series.every(function (serie) {
+            return serie.data.length === _this.I;
+        });
+        if (allSizesCorrect) {
+            return series;
+        }
+        // Note: may be optimized
+        // get available dates
+        var dates = new Set();
+        for (var _i = 0, series_1 = series; _i < series_1.length; _i++) {
+            var serie = series_1[_i];
+            for (var item in serie.data) {
+                dates.add(item[0]);
+            }
+        }
+        // find dates that not every series contain
+        var missingDates = new Set();
+        dates.forEach(function (dt) {
+            var missing = false;
+            for (var _i = 0, series_2 = series; _i < series_2.length; _i++) {
+                var serie = series_2[_i];
+                var found = false;
+                for (var item in serie.data) {
+                    if (item[0] === dt) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    missingDates.add(dt);
+                }
+            }
+        });
+        // return series with dates that every series contain
+        return series.map(function (serie) {
+            var result = {
+                data: serie.data.filter(function (item) {
+                    return !missingDates.has(item[0]);
+                })
+            };
+            return result;
+        });
+    };
+    VarHistTwoComponent.prototype.clear = function () {
+        this.data1 = [];
+        this.data2 = [];
+        this.data3 = [];
+    };
+    VarHistTwoComponent.prototype.clearAndFeed = function () {
+        this.clear();
+        return this.feed();
     };
     VarHistTwoComponent.prototype.feed = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var end, I, start, series, bitCoin, ethereum, dash, scenarioBitCoin, scenarioEthereum, portfolioSerie, currentPortfolioValue, pnl, sPnl, ranks, confidences;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var end, I, start, series, _a, bitCoin, ethereum, dash, scenarioBitCoin, scenarioEthereum, portfolioSerie, currentPortfolioValue, pnl, sPnl, var10, ranks, confidences;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         end = __WEBPACK_IMPORTED_MODULE_2_moment__();
                         I = this.I > 501 ? 501 : this.I;
                         start = __WEBPACK_IMPORTED_MODULE_2_moment__().subtract(I, 'day');
+                        _a = this.withoutMissingDates;
                         return [4 /*yield*/, this.getData(I)];
                     case 1:
-                        series = _a.sent();
+                        series = _a.apply(this, [_b.sent()]);
                         bitCoin = series[0];
                         ethereum = series[1];
                         dash = series[2];
@@ -2006,18 +2068,22 @@ var VarHistTwoComponent = (function () {
                         pnl = this.computePortfolioPnL(portfolioSerie, currentPortfolioValue);
                         this.data2 = this.mergeSerie(this.data2, pnl);
                         sPnl = this.sortPnl(pnl);
+                        var10 = this.valueAtRisk10Days(sPnl);
                         ranks = this.getRanks(sPnl);
                         confidences = this.getConfidences(ranks);
                         this.data3 = this.serieToMatrix(ranks);
                         this.data3 = this.mergeSerie(this.data3, confidences);
                         this.data3 = this.mergeSerie(this.data3, sPnl);
+                        this.data3 = this.mergeSerie(this.data3, var10);
                         return [2 /*return*/];
                 }
             });
         });
     };
     VarHistTwoComponent.prototype.getConfidences = function (ranks) {
-        return ranks.map(function (value) { return (1 - value / ranks.length) * 100; });
+        return ranks.map(function (value) {
+            return (1 - value / ranks.length) * 100;
+        });
     };
     VarHistTwoComponent.prototype.getRanks = function (serie) {
         return serie.map(function (value, i) { return i + 1; });
@@ -2026,6 +2092,11 @@ var VarHistTwoComponent = (function () {
         var result = values.slice();
         result.sort(function (a, b) { return a > b ? 1 : a === b ? 0 : -1; });
         return result;
+    };
+    VarHistTwoComponent.prototype.valueAtRisk10Days = function (values) {
+        return values.map(function (value) {
+            return Math.sqrt(10) * value;
+        });
     };
     VarHistTwoComponent.prototype.toScenario = function (serie) {
         var result = {
@@ -2224,7 +2295,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var VarHistComponent = (function () {
     function VarHistComponent(coinDeskApi) {
         this.coinDeskApi = coinDeskApi;
-        this.I = 150;
+        this.I = 500;
         this.horizon = 10;
         this.data = [];
         this.headers = [
@@ -2232,7 +2303,7 @@ var VarHistComponent = (function () {
             { label: 'Bitcoin', afterValue: 'USD', type: 'numeric' },
             { label: 'Gain & Perte', afterValue: 'USD', type: 'numeric' },
             { label: 'Confiance', afterValue: '%', type: 'numeric' },
-            { label: 'VaR', afterValue: 'USD', type: 'numeric' }
+            { label: 'VaR 10J', afterValue: 'USD', type: 'numeric' }
         ];
     }
     VarHistComponent.prototype.ngOnInit = function () {
