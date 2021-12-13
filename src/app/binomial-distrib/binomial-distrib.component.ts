@@ -38,7 +38,7 @@ export class BinomialDistribComponent {
           type: 'column'
       },
       title: {
-          text: 'Distribution binomial'
+          text: 'Distribution binomiale'
       },
       xAxis: [{
           title: { text: 'Nombre de succès' }
